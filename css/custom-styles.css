@@ -1,0 +1,142 @@
+body {
+    background: #fff;
+}
+
+.reveal h4 {
+    text-transform: none;
+    font-size: 1.3em;
+}
+
+.reveal .left {
+    text-align: left;
+}
+
+.reveal section img {
+    border: none;
+    box-shadow: none;
+}
+
+.reveal section em {
+    color: deepskyblue;
+    font-style: normal;
+}
+
+.reveal section strong {
+    color: deeppink;
+    font-weight: normal;
+}
+
+.reveal ul li {
+    list-style-type: none;
+}
+.reveal ul li:before {
+    display: inline-block;
+    content: "\2013";
+    position: relative;
+    margin-left: -20px;
+    left: -10px;
+    width: 20px;
+}
+
+.reveal ul.small {
+    font-size: 70%;
+}
+
+.reveal .backdrop {
+    display: inline-block;
+    padding: 0 3px;
+    margin: 0 -3px;
+    background-color: rgba(255, 255, 255, .8);
+    /*box-shadow: 3px 0 0 rgba(255, 245, 0, .5), -3px 0 0 rgba(255, 245, 0, .5);*/
+    border-radius: 2px;
+    line-height: 1.2;
+}
+
+.reveal h4.rx-title {
+    font-size: 1.6em;
+}
+.reveal section .rx-title img {
+    width: 1.6em;
+    height: 1.6em;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+#life-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/**
+ * Quote marks around "quotes"
+ */
+
+.reveal blockquote {
+    position: relative;
+    padding-left: 65px;
+    text-align: left;
+    box-shadow: none;
+}
+
+.reveal blockquote:before,
+.reveal blockquote:after {
+    font-family: serif;
+    font-size: 300%;
+    line-height: 0.1em;
+    color: rgba(150, 150, 150, .5);
+}
+
+.reveal blockquote:before {
+    content: '\201C';
+    margin-left: -65px;
+    margin-right: 0.1em;
+    vertical-align: -0.4em;
+}
+
+.reveal blockquote:after {
+    content: '\201D';
+    margin-left: 0;
+    vertical-align: -0.6em;
+}
+
+.reveal blockquote cite {
+    position: absolute;
+    left: 65px;
+    bottom: 0;
+    margin-bottom: -2.2em;
+}
+
+.reveal blockquote cite:before {
+    content: '-- ';
+}
+
+/**
+ * Override some code highlight styles
+ */
+.reveal pre {
+    width: 1000px;
+    border-radius: 3px;
+    box-shadow: none;
+    border: 2px solid #f0f0f0;
+}
+.reveal pre code {
+    padding: 0 10px;
+    max-height: 600px;
+    border-radius: 3px;
+    font-size: 20px !important;
+    line-height: 24px !important;
+    font-family: Consolas, monospace !important;
+    color: #333;
+}
+.hljs {
+    background: rgba(248, 248, 248, .7) !important;
+}
+
+/** Other nice colors: **/
+/* color: orangered; */
+/* color: deeppink; */
+/* color: gold; */
