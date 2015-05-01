@@ -45,7 +45,8 @@
                     <h2>Reactive Programming</h2>
                     <h4>&ndash; The one where everything is a stream</h4>
                     <p>
-                        <small>by <a href="http://cvuorinen.net">Carl Vuorinen</a> / <a href="http://twitter.com/cvuorinen">@cvuorinen</a></small>
+                        <small>by <a href="http://cvuorinen.net">Carl Vuorinen</a> /
+                            <a href="http://twitter.com/cvuorinen">@cvuorinen</a></small>
                     </p>
                 </section>
 
@@ -95,32 +96,23 @@
                 <section>
                     <h3>Streams are like collections</h3>
                     <h6>except a bit different</h6>
-
-                    <aside class="notes">
-                    	<ul>
-                    		<li>You can't access specific elements from it (so it's immutable by default)</li>
-                    		<li>You can only enumerate the values and transform it into new streams/collections/values</li>
-                    		<li>So it's basically just operations on collections to create new collections</li>
-
-                    	</ul>
-                    </aside>
                 </section>
 
                 <section>
-                	<h3>Most important message</h3>
+                    <h3>Most important message</h3>
                     <p>We have to start thinking in terms of streams</p>
-                	<blockquote class="fragment">
+                    <blockquote class="fragment">
                         Live in the moment. Do not forget nor dwell on the past, but do forgive it. Be aware of the future but do not fear or worry about it. Focus on the present moment, and that moment alone.
                         <cite><b>Dalai Lama</b> about programming with Streams</cite>
-                	</blockquote>
+                    </blockquote>
                 </section>
 
                 <section>
-                	<h3>Streams are Everywhere</h3>
+                    <h3>Streams are Everywhere</h3>
                 </section>
 
                 <section>
-                	<h3>Anatomy of a Stream</h3>
+                    <h3>Anatomy of a Stream</h3>
                     <p class="fragment">
                         <strong>Iterable</strong> stream <br> vs. <br> <em>Observable</em> stream
                     </p>
@@ -171,7 +163,36 @@ Observer.prototype.onCompleted = function () { ... }
 Observable.prototype.subscribe = function (onNext, onError, onCompleted) { ... }
                     </code></pre>
                 </section>
-
+                
+                <section>
+                    <h4>Visualization with <br> Marble Diagrams</h4>
+                    <img src="img/marble-diagram-legend.png" alt="">
+                </section>
+                
+                <section>
+                    <iframe class="marble-container" src="rxmarbles.html?type=filter" frameborder="0"></iframe>
+                </section>
+                
+                <section>
+                    <iframe class="marble-container" src="rxmarbles.html?type=map" frameborder="0"></iframe>
+                </section>
+                
+                <section>
+                    <iframe class="marble-container" src="rxmarbles.html?type=merge" frameborder="0"></iframe>
+                </section>
+                
+                <section>
+                    <iframe class="marble-container" src="rxmarbles.html?type=zip" frameborder="0"></iframe>
+                </section>
+                
+                <section>
+                    <iframe class="marble-container" src="rxmarbles.html?type=count" frameborder="0"></iframe>
+                </section>
+                
+                <section>
+                    <iframe class="marble-container" src="rxmarbles.html?type=reduce" frameborder="0"></iframe>
+                </section>
+                
                 <section>
                     <h4><strong>Hot</strong> vs. <em>Cold</em> Observables</h4>
                 </section>
@@ -179,8 +200,8 @@ Observable.prototype.subscribe = function (onNext, onError, onCompleted) { ... }
                 <section data-remove-iframe="life-container">
                 </section>
 
-                <section style="width:100%;height:100%;">
-                	<h3 class="backdrop">Game of Life</h3>
+                <section>
+                    <h3 class="backdrop">Game of Life</h3>
                     <br><br>
                     <div class="fragment">
                         <h6 class="backdrop">Rules</h6><br>
@@ -193,7 +214,7 @@ Observable.prototype.subscribe = function (onNext, onError, onCompleted) { ... }
 
                     <div class="fragment" data-add-iframe="life-container"></div>
 
-                	<!-- <iframe id="life-container" src="http://cvuorinen.github.io/reactive-life/app/#?pattern=Acorn&color2=hotpink&autostart&noGrid&embedded" frameborder="0"></iframe> -->
+                    <!-- <iframe id="life-container" src="http://cvuorinen.github.io/reactive-life/app/#?pattern=Acorn&color2=hotpink&autostart&noGrid&embedded" frameborder="0"></iframe> -->
                 </section>
 
                 <section style="text-align: left;" data-remove-iframe="life-container">

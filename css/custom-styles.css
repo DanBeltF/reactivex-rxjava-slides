@@ -7,6 +7,12 @@ body {
     font-size: 1.3em;
 }
 
+.reveal p {
+    font-family: 'Quicksand', sans-serif;
+    line-height: 1.2;
+    letter-spacing: -0.08em;
+}
+
 .reveal .left {
     text-align: left;
 }
@@ -69,6 +75,11 @@ body {
     top: 0;
     left: 0;
     z-index: -1;
+}
+
+.marble-container {
+    width: 100%;
+    height: 500px;
 }
 
 /**
