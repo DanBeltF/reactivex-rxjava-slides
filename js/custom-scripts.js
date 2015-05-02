@@ -12,7 +12,6 @@ Reveal.addEventListener('slidechanged', function(event) {
 Reveal.addEventListener('fragmentshown', function(event) {
     // event.fragment = the fragment DOM element
 
-    // Type text into fragment element
     var iframeId = $(event.fragment).attr('data-add-iframe');
     if (iframeId) {
         $('<iframe />', {
@@ -22,10 +21,25 @@ Reveal.addEventListener('fragmentshown', function(event) {
             src:  'http://localhost/reactive-life/app/#?pattern=Acorn&color2=hotpink&interval=600&autostart&noGrid&embedded'
         }).appendTo('.reveal');
     }
-
-    // Apply class to current slide (section tag)
-    var sectionClass = $(event.fragment).attr('data-section-class');
-    if (sectionClass) {
-        $(event.fragment).parent().addClass(sectionClass);
-    }
 });
+
+function runCode(element) {
+    var container = $(element).closest('section');
+    var codeToExecute = $(container.find('.code').get(0)).text();
+    var outputContainer = $(container.find('.output').get(0));
+    
+    outputContainer.text('');
+    
+    console.log('runCode', codeToExecute);
+    
+    try {
+        eval(codeToExecute);
+    } catch (error) {
+        print('Error: ' + error);
+    }
+    
+    function print(value) {
+        console.log('print', value);
+        outputContainer.append(value + "\n");
+    }
+}
