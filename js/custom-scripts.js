@@ -43,3 +43,19 @@ function runCode(element) {
         outputContainer.append(value + "\n");
     }
 }
+
+function searchWikipedia(term) {
+    console.log('searchWikipedia', term);
+    
+    var promise = $.ajax({
+        url: 'http://en.wikipedia.org/w/api.php',
+        dataType: 'jsonp',
+        data: {
+            action: 'opensearch',
+            format: 'json',
+            search: encodeURI(term)
+        }
+    }).promise();
+    
+    return Rx.Observable.fromPromise(promise);
+}
