@@ -18,7 +18,7 @@ Reveal.addEventListener('fragmentshown', function(event) {
             name: iframeId,
             id:   iframeId,
             frameborder: 0,
-            src:  'http://localhost/reactive-life/app/#?pattern=Acorn&color2=hotpink&interval=600&autostart&noGrid&embedded'
+            src:  'http://cvuorinen.github.io/reactive-life/app/#?pattern=Acorn&color2=hotpink&interval=600&autostart&noGrid&embedded'
         }).appendTo('.reveal');
     }
 });
