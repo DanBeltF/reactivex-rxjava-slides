@@ -203,14 +203,13 @@ Observable.prototype.subscribe = function (onNext, onError, onCompleted) { ... }
                     <div class="cols">
                         <div class="col">
                             <pre><code class="code" contenteditable data-trim class="javascript">
-var source = Rx.Observable
+let source = Rx.Observable
   .interval(1000)
-  .take(5);
+  .take(5)
 
 source.subscribe(
-  function (x) {
-    print("x = " + x);
-  });
+  (x) => print("x = " + x)
+)
                             </code></pre>
                         </div>
                         <div class="col">
@@ -228,16 +227,11 @@ source.subscribe(
                             <pre><code class="code" contenteditable data-trim class="javascript">
 Rx.Observable
   .fromEvent(document, 'keyup')
-  .map(function (e) {
-    return e.keyCode;
-  })
-  .filter(function (key) {
-    return key > 47 && key < 91;
-  })
-  .subscribe(function (key) {
-    print('You pressed: '
-      + String.fromCharCode(key));
-  });
+  .map(event => event.keyCode)
+  .filter(key => key > 47 && key < 91)
+  .map(key => String.fromCharCode(key))
+  .subscribe(key =>
+    print(`You pressed: ${key}`))
                             </code></pre>
                         </div>
                         <div class="col">
@@ -253,40 +247,27 @@ Rx.Observable
                     <div class="cols">
                         <div class="col">
                             <pre><code class="code" contenteditable data-trim class="javascript">
-var clickStream = Rx.Observable
+let click$ = Rx.Observable
   .fromEvent(document, 'click')
-  .bufferWithTime(1000)
-  .map(function (events) {
-    return events.length;
-  });
 
-clickStream
-  .filter(function (count) {
-    return count == 1;
-  })
-  .subscribe(function () {
-    print('Nice click.');
-  });
+let clickCount$ = click$
+  .buffer(() => click$.throttle(500))
+  .map(events => events.length)
 
-clickStream
-  .filter(function (count) {
-    return count == 2;
-  })
-  .subscribe(function () {
-    print(
-      'Wow, such doubleclick!'
-    );
-  });
+clickCount$
+  .filter(count => count == 1)
+  .subscribe(() =>
+    print('Nice click'))
 
-clickStream
-  .filter(function (count) {
-    return count > 2;
-  })
-  .subscribe(function () {
-    print(
-      'So many click, much WOW!!1!'
-    );
-  });
+clickCount$
+  .filter(count => count == 2)
+  .subscribe(() =>
+    print('Wow, such doubleclick!'))
+
+clickCount$
+  .filter(count => count > 2)
+  .subscribe(() =>
+    print('So many click, much WOW!!1!'))
                             </code></pre>
                         </div>
                         <div class="col">
@@ -309,18 +290,18 @@ clickStream
 Rx.Observable
   .fromEvent($("#autocomplete"), "keyup")
   .throttle(500)
-  .map(function (e) { return e.target.value; })
-  .filter(function (keyword) { return keyword.length > 0; })
+  .map(e => e.target.value)
+  .filter(keyword => keyword.length > 0)
   .distinctUntilChanged()
   .map(searchWikipedia)
   .switchLatest()
-  .subscribe(function (data) {
-    $("#autocomplete-suggestions").html('');
-    data[1].map(function (result) {
+  .subscribe(data => {
+    $("#autocomplete-suggestions").html('')
+    data[1].map(result => {
       $("#autocomplete-suggestions")
-        .append("<div>" + result + "</div>");
-    });
-  });
+        .append(`<div>${result}</div>`)
+    })
+  })
                             </code></pre>
                         </div>
 
@@ -341,48 +322,18 @@ Rx.Observable
                     <img src="img/black-box.png" alt="">
                 </section>
 
-                <section data-remove-iframe="life-container">
+                <section>
+                    <h4>Angular2</h4>
+                    TODO
+                </section>
+
+                <section>
                     <h3>Demo Time</h3>
                 </section>
 
-                <section>
-                    <h3 class="backdrop">Game of Life</h3>
-                    <br><br>
-                    <div class="fragment">
-                        <h6 class="backdrop">Rules</h6><br>
-                        <ul class="small">
-                            <li><span class="backdrop">under-population (neighbours &lt; 2)</span></li>
-                            <li><span class="backdrop">overcrowding (neighbours &gt; 3)</span></li>
-                            <li><span class="backdrop">reproduction (neighbours == 3)</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="fragment" data-add-iframe="life-container"></div>
-                    <!-- <iframe id="life-container" src="http://cvuorinen.github.io/reactive-life/app/#?pattern=Acorn&color2=hotpink&autostart&noGrid&embedded" frameborder="0"></iframe> -->
-                </section>
-
-                <section>
-                    <h3>Real World Use Cases</h3>
-                    <ul>
-                        <li>Game development</li>
-                        <li>User Interfaces</li>
-                        <li>Mobile apps</li>
-                        <li>etc.</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h4>Dependencies (interactive)</h4>
-                    <img src="img/dependencies-interactive.png" alt="">
-                </section>
-
-                <section>
-                    <h4>Dependencies (reactive)</h4>
-                    <img src="img/dependencies-reactive.png" alt="">
-                </section>
-
-                <section style="text-align: left;" data-remove-iframe="life-container">
+                <section style="text-align: left;">
                     <h1>THE END</h1>
+                    <!-- TODO -->
                     <ul>
                         <li><a href="http://reactivex.io/">ReactiveX</a></li>
                         <li><a href="https://www.youtube.com/watch?v=WKore-AkisY">A

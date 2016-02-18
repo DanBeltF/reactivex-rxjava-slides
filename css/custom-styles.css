@@ -100,8 +100,11 @@ body {
 }
 
 .reveal .col {
-    flex: 1;
+    flex: 1.2;
     margin: 0 10px;
+}
+.reveal .col + .col {
+    flex: .8;
 }
 
 .reveal .col pre {
