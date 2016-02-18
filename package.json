@@ -22,6 +22,7 @@
     "node": "~0.10.0"
   },
   "dependencies": {
+    "babel-standalone": "^6.4.4",
     "express": "~2.5.9",
     "jquery": "^2.1.4",
     "mustache": "~0.7.2",

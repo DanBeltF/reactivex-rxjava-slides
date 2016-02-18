@@ -27,17 +27,19 @@ function runCode(element) {
     var container = $(element).closest('section');
     var codeToExecute = $(container.find('.code').get(0)).text();
     var outputContainer = $(container.find('.output').get(0));
-    
+
     outputContainer.text('');
-    
+
     console.log('runCode', codeToExecute);
-    
+
     try {
-        eval(codeToExecute);
+        var transpiled = Babel.transform(codeToExecute, { presets: ['es2015'] });
+
+        eval(transpiled.code);
     } catch (error) {
         print('Error: ' + error);
     }
-    
+
     function print(value) {
         console.log('print', value);
         outputContainer.append(value + "\n");
@@ -46,7 +48,7 @@ function runCode(element) {
 
 function searchWikipedia(term) {
     console.log('searchWikipedia', term);
-    
+
     var promise = $.ajax({
         url: 'http://en.wikipedia.org/w/api.php',
         dataType: 'jsonp',
@@ -56,6 +58,6 @@ function searchWikipedia(term) {
             search: encodeURI(term)
         }
     }).promise();
-    
+
     return Rx.Observable.fromPromise(promise);
 }
