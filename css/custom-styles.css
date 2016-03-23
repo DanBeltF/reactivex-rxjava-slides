@@ -1,3 +1,8 @@
+@import url(../lib/font/fontsselectezy/stylesheet.css);
+@import url(../lib/font/Architects_Daughter/ArchitectsDaughter.css);
+@import url(../lib/font/Quicksand/Quicksand.css);
+@import url(../lib/font/Open_Sans/OpenSans.css);
+
 body {
     background: #fff;
 }
@@ -12,7 +17,7 @@ body {
     font-size: 1.3em;
 }
 
-.reveal p {
+.reveal p, .reveal li {
     font-family: 'Quicksand', sans-serif;
     line-height: 1.2;
     letter-spacing: -0.08em;
@@ -116,7 +121,7 @@ body {
     height: 350px;
 }
 
-.reveal .col pre.output {
+.reveal .col.output pre {
     padding: 0 10px;
     background: rgba(248, 248, 248, .7);
 }
@@ -146,13 +151,37 @@ body {
     color: #fff;
 }
 
-#life-container {
+.dalai-lama {
+    opacity: 0;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    bottom: -100px;
+    left: -50px;
+    transition: opacity .5s;
+}
+.dalai-lama img {
+    max-width: 40vw;
+    max-height: 80vh;
+}
+
+.dalai-quote .dalai-lama {
+    opacity: 1;
+}
+
+.reveal .photo-credits {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    color: #999;
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 99;
+    display: none;
+}
+.show-photo-credits .photo-credits {
+    display: block;
+}
+.reveal .photo-credits a {
+    color: #999;
 }
 
 /**
@@ -220,7 +249,103 @@ body {
     background: rgba(248, 248, 248, .7) !important;
 }
 
-/** Other nice colors: **/
-/* color: orangered; */
-/* color: deeppink; */
-/* color: gold; */
+/**
+ * Code with marks highlighted
+ */
+.code mark {
+    display: inline-block;
+    padding: 0 3px;
+    margin: 0 -3px;
+    background-color: rgba(255, 245, 0, .4);
+    box-shadow: 3px 0 0 rgba(255, 245, 0, .4), -3px 0 0 rgba(255, 245, 0, .4);
+    border-radius: 6px;
+    line-height: 1.2;
+    color: #333;
+}
+
+/**
+ * Callout arrows & highlights
+ */
+.reveal .callout {
+    position: absolute;
+    display: inline-block;
+    font-size: 32px;
+    color: rgba(240, 40, 60, .8);
+    font-family: 'Architects Daughter', cursive;
+    text-shadow: 0 0 4px #fff, 0 0 4px #fff, 0 0 2px #fff, 0 0 2px #fff;
+    line-height: 1;
+}
+.reveal .callout.position-top .callout-text {
+    margin-left: 30px;
+    margin-bottom: -5px;
+}
+.reveal .callout.position-topright .callout-text {
+    margin-left: 15px;
+}
+.reveal .callout.position-left .callout-text {
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.reveal .callout.position-right .callout-text {
+    margin-left: -19px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+.reveal .callout.position-bottom .callout-text {
+    margin-left: 50px;
+    margin-top: -10px;
+}
+.reveal .callout.position-bottomleft .callout-text {
+    margin-top: 20px;
+    margin-right: -25px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+}
+.reveal .callout .callout-arrow,
+.reveal .callout .callout-circle {
+    font-family: 'fontsselectezymedium';
+    font-size: 150px;
+    line-height: .3;
+    text-align: left;
+}
+.reveal .callout.position-left .callout-arrow,
+.reveal .callout.position-right .callout-arrow,
+.reveal .callout.position-bottomleft .callout-arrow {
+    display: inline-block;
+    vertical-align: middle;
+}
+.reveal .callout.position-bottomleft .callout-arrow {
+    margin-bottom: 40px;
+}
+.reveal .callout.position-top .callout-arrow:after {
+    content: 'H';
+}
+.reveal .callout.position-topright .callout-arrow:after {
+    content: 'I';
+}
+.reveal .callout.position-left .callout-arrow:after {
+    content: 'D';
+}
+.reveal .callout.position-right .callout-arrow:after {
+    content: 'E';
+}
+.reveal .callout.position-bottom .callout-arrow:after {
+    content: 'Y';
+}
+.reveal .callout.position-bottomleft .callout-arrow:after {
+    content: 'G';
+}
+.reveal .callout .callout-circle {
+    font-size: 250px;
+}
+.reveal .callout .callout-circle:after {
+    content: 'd';
+}
+.reveal .callout.position-circle-top .callout-text {
+    margin-top: 20px;
+    margin-bottom: -20px;
+    margin-left: 40px;
+}
