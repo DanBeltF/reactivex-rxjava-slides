@@ -5,7 +5,7 @@
         <meta charset="utf-8">
 
         <title>RxMarbles</title>
-        
+
         <style>
             html, body {
                 height: 95%;
@@ -22,9 +22,9 @@
     <body>
 
         <div class="container"></div>
-        
-        <script src="node_modules/jquery/dist/jquery.min.js"></script>
-        
+
+        <script src="js/jquery.min.js"></script>
+
         <!-- RxMarbles embed code -->
         <!-- see https://github.com/staltz/rxmarbles/releases/tag/v1.3.1 -->
         <script src="lib/js/rxmarbles/element.js"></script>
@@ -36,19 +36,19 @@
                 var type = queryParameters().type || 'map';
                 $('.container').append('<rx-marbles key="' + type + '">');
             });
-            
+
             function queryParameters() {
                 var result = {};
-        
+
                 var params = window.location.search.split(/\?|\&/);
-        
+
                 params.forEach( function(it) {
                     if (it) {
                         var param = it.split("=");
                         result[param[0]] = param[1];
                     }
                 });
-        
+
                 return result;
             }
 

@@ -594,9 +594,10 @@ export class Autocomplete {
         <script src="js/reveal.js"></script>
 
         <!-- jQuery, Babel, RxJs & my custom js -->
-        <script src="node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="node_modules/babel-standalone/babel.min.js"></script>
-        <script src="node_modules/rx/dist/rx.all.min.js"></script>
+        <!-- copied from node_modules/ to js/ for so they can be committed and work with gh-pages -->
+        <script src="js/jquery.min.js"></script> <!-- copy from node_modules/jquery/dist/jquery.min.js -->
+        <script src="js/babel.min.js"></script> <!-- copy from node_modules/babel-standalone/babel.min.js -->
+        <script src="js/rx.all.min.js"></script> <!-- copy from node_modules/rx/dist/rx.all.min.js -->
         <script src="js/custom-scripts.js"></script>
 
         <script>
