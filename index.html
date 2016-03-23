@@ -20,6 +20,9 @@
         <!-- Code syntax highlighting -->
         <link rel="stylesheet" href="lib/css/github.css">
 
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+
         <!-- Printing and PDF exports -->
         <script>
             var link = document.createElement( 'link' );
@@ -36,26 +39,63 @@
 
     <body>
 
+        <div class="dalai-lama">
+            <img src="img/dalai-lama.png">
+        </div>
+
         <div class="reveal">
+            <header class="photo-credits backdrop"></header>
 
             <div class="slides">
                 <section>
-                    <img src="img/Rx_Logo_S.png" alt="">
+                    <img src="img/Rx_Logo_S.png" style="margin: 20px">
+                    <img src="img/angular_logo.png" style="margin: 20px">
+                    <br><br>
                     <h3>Introduction to</h3>
                     <h2>Reactive Programming</h2>
-                    <h4>&ndash; The one where everything is a stream</h4>
-                    <p>
-                        <small>by <a href="http://cvuorinen.net">Carl Vuorinen</a> /
-                            <a href="http://twitter.com/cvuorinen">@cvuorinen</a></small>
+                    <h4>with RxJS & Angular2</h4>
+                    <br>
+                    <p>by <a href="http://cvuorinen.net">Carl Vuorinen</a> /
+                        <a href="http://twitter.com/cvuorinen">@cvuorinen</a>
                     </p>
                 </section>
 
                 <section>
+                    <h4>Carl Vuorinen</h4>
+                    <div style="width:600px; margin: 0 auto;">
+                        <div class="pull-left">
+                            <a href="http://w3.fi" target="_blank">
+                            <img src="img/w3-logo.png" alt="">
+                            <p>
+                                <a href="http://w3.fi/rekry/avoimet-tyopaikat/" target="_blank">w3.fi/rekry</a>
+                            </p>
+                        </a>
+                        </div>
+
+                        <div style="text-align:left;float:right;margin-top:30px;">
+                            <h5>
+                                <i class="fa fa-lg fa-twitter" style="width:1.5em;"></i>
+                                <a href="http://twitter.com/cvuorinen" target="_blank">@cvuorinen</a>
+                            </h5>
+                            <h5>
+                                <i class="fa fa-lg fa-github" style="width:1.5em;"></i>
+                                <a href="https://github.com/cvuorinen" target="_blank">cvuorinen</a>
+                            </h5>
+                            <h5>
+                                <i class="fa fa-lg fa-rss" style="width:1.5em;"></i>
+                                <a href="http://cvuorinen.net" target="_blank">cvuorinen.net</a>
+                            </h5>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
                     <p>
-                        Reactive == code that <strong>reacts to changes</strong>
+                        Reactive == code that <br><strong>reacts to changes</strong>
                     </p>
+                    <br>
                     <p>
-                        Instead of imperative, where the code <em>executes linearly</em>
+                        Instead of imperative, <br>where the code <em>executes linearly</em>
                     </p>
                 </section>
 
@@ -73,7 +113,7 @@
                     <h4>ReactiveX Languages</h4>
                     <ul style="width:40%;float:left;margin-left:15%;">
                         <li>Java: <a href="https://github.com/ReactiveX/RxJava" target="_blank">RxJava</a></li>
-                        <li>JavaScript: <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">RxJs</a></li>
+                        <li>JavaScript: <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">RxJS</a></li>
                         <li>C#: <a href="https://github.com/Reactive-Extensions/Rx.NET" target="_blank">Rx.NET</a></li>
                         <li>C#(Unity): <a href="https://github.com/neuecc/UniRx" target="_blank">UniRx</a></li>
                         <li>Scala: <a href="https://github.com/ReactiveX/RxScala" target="_blank">RxScala</a></li>
@@ -91,33 +131,34 @@
 
                 <section>
                     <h2>Everything is a Stream</h2>
+                    <div class="fragment">
+                        <h4>Streams are like collections</h4>
+                        <h6>except a bit different</h6>
+                    </div>
                 </section>
 
                 <section>
-                    <h3>Streams are like collections</h3>
-                    <h6>except a bit different</h6>
-                </section>
-
-                <section>
-                    <h3>Most important message</h3>
-                    <p>We have to start thinking in terms of streams</p>
-                    <blockquote class="fragment">
-                        Live in the moment. Do not forget nor dwell on the past, but do forgive it.
-                        Be aware of the future but do not fear or worry about it.
-                        Focus on the present moment, and that moment alone.
-                        <cite><b>Dalai Lama</b> about programming with Streams</cite>
-                    </blockquote>
-                </section>
-
-                <section>
-                    <h3>Streams are Everywhere</h3>
+                    <h2>Streams are Everywhere</h2>
                 </section>
 
                 <section>
                     <h3>Anatomy of a Stream</h3>
-                    <p class="fragment">
-                        <strong>Iterable</strong> stream <br> vs. <br> <em>Observable</em> stream
-                    </p>
+                    <h4 class="fragment">
+                        <strong>Iterable</strong> stream
+                        <br> vs.
+                        <br> <em>Observable</em> stream
+                    </h4>
+                    <div class="fragment callout"
+                         data-callout="em:contains('Observable')"
+                         data-callout-offset-left="-90"
+                         data-callout-offset-top="5"
+                         data-callout-offset-size="180">
+                         <div class="callout-circle"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <iframe data-autoplay width="640" height="480" src="https://www.youtube.com/embed/hLYMD6R6PvU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </section>
 
                 <section>
@@ -166,9 +207,39 @@ Observable.prototype.subscribe = function (onNext, onError, onCompleted) { ... }
                     </code></pre>
                 </section>
 
+                <section data-state="dalai-quote" data-transition="fade">
+                    <h3>Most important message</h3>
+                    <p>We have to start thinking in terms of streams</p>
+                    <blockquote class="backdrop">
+                        Live in the moment. Do not forget nor dwell on the past, but do forgive it.
+                        Be aware of the future but do not fear or worry about it.
+                        Focus on the present moment, and that moment alone.
+                        <cite><b>Dalai Lama</b> about programming with Streams</cite>
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h3>Operators</h3>
+                    <ul style="width:30%;float:left;margin-left:25%;">
+                        <li>map</li>
+                        <li>reduce</li>
+                        <li>filter</li>
+                        <li>scan</li>
+                        <li>flatMap</li>
+                    </ul>
+                    <ul style="width:40%;float:left;">
+                        <li>merge</li>
+                        <li>zip</li>
+                        <li>switch</li>
+                        <li>and many more...</li>
+                        <li class="fragment">many many many more</li>
+                    </ul>
+                </section>
+
                 <section>
                     <h4>Visualization with <br> Marble Diagrams</h4>
                     <img src="img/marble-diagram-legend.png" alt="">
+                    <p><a target="_blank" href="http://rxmarbles.com/">RxMarbles.com</a></p>
                 </section>
 
                 <section>
@@ -177,6 +248,10 @@ Observable.prototype.subscribe = function (onNext, onError, onCompleted) { ... }
 
                 <section>
                     <iframe class="marble-container" src="rxmarbles.html?type=map" frameborder="0"></iframe>
+                </section>
+
+                <section>
+                    <iframe class="marble-container" src="rxmarbles.html?type=debounce" frameborder="0"></iframe>
                 </section>
 
                 <section>
@@ -196,24 +271,56 @@ Observable.prototype.subscribe = function (onNext, onError, onCompleted) { ... }
                 </section>
 
                 <section>
+                    <h4>ASCII diagrams</h4>
+                    <pre><code class="code javascript" contenteditable data-trim>
+// letters:
+// -----a-----b-----c-----d-----e-----f-----|
+
+const uppercase = letters.map(x => x.toUpperCase());
+
+// -----A-----B-----C-----D-----E-----F-----|
+
+const delayed = uppercase.delay(1000);
+
+// ---------------A-----B-----C-----D-----E-----F-----|
+
+const firstThree = delayed.take(3);
+
+// ---------------A-----B-----C|
+                    </code></pre>
+                </section>
+
+                <section>
                     <h4><strong>Hot</strong> vs. <em>Cold</em> Observables</h4>
+                    <div class="fragment callout position-top"
+                         data-callout="strong:contains('Hot')">
+                        <div class="callout-text">Each subscription <br>gets same values</div>
+                        <div class="callout-arrow"></div>
+                    </div>
+                    <div class="fragment callout position-bottom"
+                         data-callout="em:contains('Cold')">
+                        <div class="callout-arrow"></div>
+                        <div class="callout-text">Cold Observables <br>are not shared</div>
+                    </div>
                 </section>
 
                 <section>
                     <div class="cols">
                         <div class="col">
-                            <pre><code class="code" contenteditable data-trim class="javascript">
-let source = Rx.Observable
+                            <pre><code class="code javascript" contenteditable data-trim>
+const source = Rx.Observable
   .interval(1000)
   .take(5)
 
 source.subscribe(
   (x) => print("x = " + x)
-)
+);
+
+
                             </code></pre>
                         </div>
-                        <div class="col">
-                            <pre class="output"></pre>
+                        <div class="col output">
+                            <pre></pre>
                         </div>
                     </div>
                     <div>
@@ -224,7 +331,7 @@ source.subscribe(
                 <section>
                     <div class="cols">
                         <div class="col">
-                            <pre><code class="code" contenteditable data-trim class="javascript">
+                            <pre><code class="code javascript" contenteditable data-trim>
 Rx.Observable
   .fromEvent(document, 'keyup')
   .map(event => event.keyCode)
@@ -234,8 +341,8 @@ Rx.Observable
     print(`You pressed: ${key}`))
                             </code></pre>
                         </div>
-                        <div class="col">
-                            <pre class="output"></pre>
+                        <div class="col output">
+                            <pre></pre>
                         </div>
                     </div>
                     <div>
@@ -246,12 +353,12 @@ Rx.Observable
                 <section>
                     <div class="cols">
                         <div class="col">
-                            <pre><code class="code" contenteditable data-trim class="javascript">
-let click$ = Rx.Observable
+                            <pre><code class="code javascript" contenteditable data-trim>
+const click$ = Rx.Observable
   .fromEvent(document, 'click')
 
-let clickCount$ = click$
-  .buffer(() => click$.throttle(500))
+const clickCount$ = click$
+  .buffer(() => click$.debounce(500))
   .map(events => events.length)
 
 clickCount$
@@ -270,41 +377,9 @@ clickCount$
     print('So many click, much WOW!!1!'))
                             </code></pre>
                         </div>
-                        <div class="col">
-                            <pre class="output"></pre>
+                        <div class="col output">
+                            <pre></pre>
                         </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
-                </section>
-
-                <section>
-                    <div style="height:60px;text-align:left;position:relative;">
-                                <input type="text" id="autocomplete" style="font-size:16px;padding:5px;">
-                                <div id="autocomplete-suggestions"></div>
-                            </div>
-                    <div class="cols2">
-                        <div class="col2">
-                            <pre><code class="code" contenteditable data-trim class="javascript">
-Rx.Observable
-  .fromEvent($("#autocomplete"), "keyup")
-  .throttle(500)
-  .map(e => e.target.value)
-  .filter(keyword => keyword.length > 0)
-  .distinctUntilChanged()
-  .map(searchWikipedia)
-  .switchLatest()
-  .subscribe(data => {
-    $("#autocomplete-suggestions").html('')
-    data[1].map(result => {
-      $("#autocomplete-suggestions")
-        .append(`<div>${result}</div>`)
-    })
-  })
-                            </code></pre>
-                        </div>
-
                     </div>
                     <div>
                         <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
@@ -318,13 +393,176 @@ Rx.Observable
                 </section>
 
                 <section>
-                    <h4>Observable is a Black Box</h4>
-                    <img src="img/black-box.png" alt="">
+                    <h4 class="rx-title">
+                        <img src="img/angular_hel.png" alt="">
+                        Angular2
+                    </h4>
                 </section>
 
                 <section>
-                    <h4>Angular2</h4>
-                    TODO
+                    <h4>Has <strong>RxJS</strong> as a dependency</h4>
+                    <p>Uses the new version 5 (which is still in beta)</p>
+                </section>
+
+                <section>
+                    <h4>AsyncPipe</h4>
+                    <pre><code class="code typescript" data-trim>
+import {AsyncPipe} from "angular2/common";
+
+@Component({
+  selector: "list",
+  pipes: [AsyncPipe],
+  template: `&lt;h4&gt;{{ title | async }}&lt;/h4&gt;
+             &lt;ul&gt;
+               &lt;li *ngFor="#item of items | async"&gt;{{ item }}&lt;/li&gt;
+             &lt;/ul&gt;`
+})
+export class List {
+  @Input() title: Observable&lt;string&gt;;
+  @Input() items: Observable&lt;string[]&gt;;
+}
+                    </code></pre>
+                    <div class="fragment callout position-top"
+                         data-callout="span.hljs-string:contains('list')"
+                         data-callout-offset-left="180"
+                         data-callout-offset-top="40">
+                        <div class="callout-text">Subscribes to the Observable</div>
+                        <div class="callout-arrow"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4>AsyncPipe & OnPush</h4>
+                    <pre><code class="code typescript" data-trim data-noescape>
+import {AsyncPipe} from "angular2/common";
+<mark>import {ChangeDetectionStrategy} from "angular2/core";</mark>
+
+@Component({
+  selector: "list",
+  pipes: [AsyncPipe],
+  <mark>changeDetection: ChangeDetectionStrategy.OnPush,</mark>
+  template: `&lt;h4&gt;{{ title | async }}&lt;/h4&gt;
+             &lt;ul&gt;
+               &lt;li *ngFor="#item of items | async"&gt;{{ item }}&lt;/li&gt;
+             &lt;/ul&gt;`
+})
+export class List {
+  @Input() title: Observable&lt;string&gt;;
+  @Input() items: Observable&lt;string[]&gt;;
+}
+                    </code></pre>
+                    <!-- http://plnkr.co/edit/nYJR0DxHjArNoBx20fnm -->
+                </section>
+
+                <section>
+                    <h4>Control & ngFormControl</h4>
+                    <pre><code class="code typescript" data-trim>
+import {Control} from "angular2/common";
+
+@Component({
+  selector: "search",
+  template: `&lt;input [ngFormControl]="search"&gt;`
+})
+export class Search {
+  search: Control = new Control();
+  values: Observable&lt;string&gt; = this.search.valueChanges;
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4>DIY valueChanges Observable</h4>
+                    <pre><code class="code typescript" data-trim>
+import {ViewChild} from "angular2/core";
+
+@Component({
+  selector: "search",
+  template: `&lt;input #search&gt;`
+})
+export class Search implements AfterViewInit {
+  @ViewChild('search') searchInput;
+  valueChanges: Observable&lt;string&gt;;
+
+  ngAfterViewInit() {
+    this.valueChanges = Observable
+      .fromEvent(this.searchInput.nativeElement, 'change')
+      .map(event => event.target.value);
+  }
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4>Http</h4>
+                    <pre><code class="code typescript" data-trim>
+import {Http} from "angular2/http";
+
+@Injectable()
+export class GithubSearch {
+  private baseUrl = "https://api.github.com";
+
+  constructor(private http: Http) {}
+
+  searchUsers(term: string): Observable&lt;string[]&gt; {
+    return this.http.get(this.baseUrl + "/search/users?q=" + term)
+      .map(response => response.json())
+      .map(result => result.items.map(item => item.login))
+      .share();
+  }
+}
+                    </code></pre>
+                    <div class="fragment callout position-right"
+                         data-callout="span.hljs-string:contains('search')"
+                         data-callout-offset-left="-470"
+                         data-callout-offset-top="90">
+                        <div class="callout-arrow"></div>
+                        <div class="callout-text">To prevent duplicate requests</div>
+                    </div>
+                </section>
+
+                <section>
+                    <div style="height:60px;text-align:left;position:relative;">
+                        <input type="text" id="autocomplete" style="font-size:16px;padding:5px;">
+                        <div id="autocomplete-suggestions"></div>
+                    </div>
+                    <div class="cols2">
+                        <div class="col2">
+                            <pre><code class="code typescript" data-trim>
+@Component({
+    selector: "autocomplete",
+    pipes: [AsyncPipe],
+    template: `&lt;input [ngFormControl]="search"&gt;
+               &lt;ul&gt;
+                 &lt;li *ngFor="#suggestion of suggestions | async"&gt;
+                   {{ suggestion }}
+                 &lt;/li&gt;
+               &lt;/ul&gt;`
+})
+export class Autocomplete {
+    public search = new Control();
+    public suggestions: Observable&lt;string[]&gt;;
+
+    constructor(github: GithubSearch) {
+        this.suggestions = this.search.valueChanges
+            .debounceTime(400)
+            .map(keyword => keyword.trim())
+            .filter(keyword => keyword.length > 0)
+            .distinctUntilChanged()
+            .map(keyword => github.searchUsers(keyword))
+            .switch();
+    }
+}
+                            </code></pre>
+                        </div>
+
+                    </div>
+                    <!-- http://plnkr.co/edit/sJ7nopEGhhhTXyVuwccf -->
+                    <!-- http://plnkr.co/edit/gPInaMHTbVsI17oKQV9u -->
+                </section>
+
+                <section>
+                    <h4>Component as a Black Box</h4>
+                    <img src="img/black-box.png" alt="">
                 </section>
 
                 <section>
@@ -342,10 +580,9 @@ Rx.Observable
                         <li><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">The
                             introduction to Reactive Programming <br> you've been missing
                         </a></li>
-                        <li><a href="http://rxmarbles.com/">RxMarbles</a></li>
                         <li><a href="http://jhusain.github.io/learnrx/">Interactive tutorial
                             to FRP in JavaScript</a></li>
-                        <li><a href="https://github.com/cvuorinen/reactive-life">Reactive Game of Life</a></li>
+                        <li><a href="https://github.com/cvuorinen/angular2-excel">Angular 2 Excel</a></li>
                     </ul>
                 </section>
 
@@ -367,7 +604,7 @@ Rx.Observable
             // Full list of configuration options available at:
             // https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
-                controls: true,
+                controls: false,
                 progress: true,
                 history: true,
                 center: true,
