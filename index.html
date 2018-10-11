@@ -39,10 +39,6 @@
 
     <body>
 
-        <div class="dalai-lama">
-            <img src="img/dalai-lama.png">
-        </div>
-
         <div class="reveal">
             <header class="photo-credits backdrop"></header>
 
@@ -51,17 +47,17 @@
                     <img src="img/Rx_Logo_S.png" style="margin: 20px">
                     
                     <br><br>
-                    <h3>Introduction to TEST</h3>
+                    <h3>Introduction to</h3>
                     <h2>Reactive Programming</h2>
-                    <h4>with RxJS & Angular2</h4>
+                    <h4>with ReactiveX & RxJava</h4>
                     <br>
-                    <p>by <a href="http://cvuorinen.net">Carl Vuorinen</a> /
-                        <a href="http://twitter.com/cvuorinen">@cvuorinen</a>
+                    <p>by <a href="">Daniel Beltran</a> /
+                        <a href="https://github.com/DanBeltF">@DanBeltF</a>
                     </p>
                 </section>
 
                 <section>
-                    <h4>Carl Vuorinen</h4>
+                    <h4>Daniel Beltran</h4>
                     <div style="width:600px; margin: 0 auto;">
                         <div class="pull-left">
                             <a href="http://w3.fi" target="_blank">
@@ -74,7 +70,7 @@
 
                         <div style="text-align:left;float:right;margin-top:30px;">
                             <h5>
-                                <i class="fa fa-lg fa-twitter" style="width:1.5em;"></i>
+                                <i class="fa fa-lg fa-envelope" style="width:1.5em;"></i>
                                 <a href="http://twitter.com/cvuorinen" target="_blank">@cvuorinen</a>
                             </h5>
                             <h5>
@@ -158,10 +154,6 @@
                 </section>
 
                 <section>
-                    <iframe data-autoplay width="640" height="480" src="https://www.youtube.com/embed/hLYMD6R6PvU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                </section>
-
-                <section>
                     <h3>Observable stream</h3>
                     <pre><code data-trim class="java">
 public class Observable {
@@ -179,43 +171,6 @@ public interface Subscription {
     boolean isUnsubscribed();
 }
                     </code></pre>
-                </section>
-
-                <section>
-                    <pre><code data-trim class="javascript">
-function Observable() { }
-/**
- * @param {Observer} observer
- * @returns {Disposable}
- */
-Observable.prototype.subscribe = function (observer) { ... }
-
-function Observer() { }
-Observer.prototype.onNext = function (value) { ... }
-Observer.prototype.onError = function (error) { ... }
-Observer.prototype.onCompleted = function () { ... }
-                    </code></pre>
-
-                    <pre class="fragment"><code data-trim class="javascript">
-/**
- * @param {Function} onNext
- * @param {Function} onError
- * @param {Function} onCompleted
- * @returns {Disposable}
- */
-Observable.prototype.subscribe = function (onNext, onError, onCompleted) { ... }
-                    </code></pre>
-                </section>
-
-                <section data-state="dalai-quote" data-transition="fade">
-                    <h3>Most important message</h3>
-                    <p>We have to start thinking in terms of streams</p>
-                    <blockquote class="backdrop">
-                        Live in the moment. Do not forget nor dwell on the past, but do forgive it.
-                        Be aware of the future but do not fear or worry about it.
-                        Focus on the present moment, and that moment alone.
-                        <cite><b>Dalai Lama</b> about programming with Streams</cite>
-                    </blockquote>
                 </section>
 
                 <section>
@@ -392,197 +347,15 @@ clickCount$
                         create more <em>complex events</em>.</h4>
                 </section>
 
-                <section>
-                    <h4 class="rx-title">
-                        <img src="img/angular_hel.png" alt="">
-                        Angular2
-                    </h4>
-                </section>
-
-                <section>
-                    <h4>Has <strong>RxJS</strong> as a dependency</h4>
-                    <p>Uses the new version 5 (which is still in beta)</p>
-                </section>
-
-                <section>
-                    <h4>AsyncPipe</h4>
-                    <pre><code class="code typescript" data-trim>
-import {AsyncPipe} from "angular2/common";
-
-@Component({
-  selector: "list",
-  pipes: [AsyncPipe],
-  template: `&lt;h4&gt;{{ title | async }}&lt;/h4&gt;
-             &lt;ul&gt;
-               &lt;li *ngFor="#item of items | async"&gt;{{ item }}&lt;/li&gt;
-             &lt;/ul&gt;`
-})
-export class List {
-  @Input() title: Observable&lt;string&gt;;
-  @Input() items: Observable&lt;string[]&gt;;
-}
-                    </code></pre>
-                    <div class="fragment callout position-top"
-                         data-callout="span.hljs-string:contains('list')"
-                         data-callout-offset-left="180"
-                         data-callout-offset-top="40">
-                        <div class="callout-text">Subscribes to the Observable</div>
-                        <div class="callout-arrow"></div>
-                    </div>
-                </section>
-
-                <section>
-                    <h4>AsyncPipe & OnPush</h4>
-                    <pre><code class="code typescript" data-trim data-noescape>
-import {AsyncPipe} from "angular2/common";
-<mark>import {ChangeDetectionStrategy} from "angular2/core";</mark>
-
-@Component({
-  selector: "list",
-  pipes: [AsyncPipe],
-  <mark>changeDetection: ChangeDetectionStrategy.OnPush,</mark>
-  template: `&lt;h4&gt;{{ title | async }}&lt;/h4&gt;
-             &lt;ul&gt;
-               &lt;li *ngFor="#item of items | async"&gt;{{ item }}&lt;/li&gt;
-             &lt;/ul&gt;`
-})
-export class List {
-  @Input() title: Observable&lt;string&gt;;
-  @Input() items: Observable&lt;string[]&gt;;
-}
-                    </code></pre>
-                    <!-- http://plnkr.co/edit/nYJR0DxHjArNoBx20fnm -->
-                </section>
-
-                <section>
-                    <h4>Control & ngFormControl</h4>
-                    <pre><code class="code typescript" data-trim>
-import {Control} from "angular2/common";
-
-@Component({
-  selector: "search",
-  template: `&lt;input [ngFormControl]="search"&gt;`
-})
-export class Search {
-  search: Control = new Control();
-  values: Observable&lt;string&gt; = this.search.valueChanges;
-}
-                    </code></pre>
-                </section>
-
-                <section>
-                    <h4>DIY valueChanges Observable</h4>
-                    <pre><code class="code typescript" data-trim>
-import {ViewChild} from "angular2/core";
-
-@Component({
-  selector: "search",
-  template: `&lt;input #search&gt;`
-})
-export class Search implements AfterViewInit {
-  @ViewChild('search') searchInput;
-  valueChanges: Observable&lt;string&gt;;
-
-  ngAfterViewInit() {
-    this.valueChanges = Observable
-      .fromEvent(this.searchInput.nativeElement, 'change')
-      .map(event => event.target.value);
-  }
-}
-                    </code></pre>
-                </section>
-
-                <section>
-                    <h4>Http</h4>
-                    <pre><code class="code typescript" data-trim>
-import {Http} from "angular2/http";
-
-@Injectable()
-export class GithubSearch {
-  private baseUrl = "https://api.github.com";
-
-  constructor(private http: Http) {}
-
-  searchUsers(term: string): Observable&lt;string[]&gt; {
-    return this.http.get(this.baseUrl + "/search/users?q=" + term)
-      .map(response => response.json())
-      .map(result => result.items.map(item => item.login))
-      .share();
-  }
-}
-                    </code></pre>
-                    <div class="fragment callout position-right"
-                         data-callout="span.hljs-string:contains('search')"
-                         data-callout-offset-left="-470"
-                         data-callout-offset-top="90">
-                        <div class="callout-arrow"></div>
-                        <div class="callout-text">To prevent duplicate requests</div>
-                    </div>
-                </section>
-
-                <section>
-                    <div style="height:60px;text-align:left;position:relative;">
-                        <input type="text" id="autocomplete" style="font-size:16px;padding:5px;">
-                        <div id="autocomplete-suggestions"></div>
-                    </div>
-                    <div class="cols2">
-                        <div class="col2">
-                            <pre><code class="code typescript" data-trim>
-@Component({
-    selector: "autocomplete",
-    pipes: [AsyncPipe],
-    template: `&lt;input [ngFormControl]="search"&gt;
-               &lt;ul&gt;
-                 &lt;li *ngFor="#suggestion of suggestions | async"&gt;
-                   {{ suggestion }}
-                 &lt;/li&gt;
-               &lt;/ul&gt;`
-})
-export class Autocomplete {
-    public search = new Control();
-    public suggestions: Observable&lt;string[]&gt;;
-
-    constructor(github: GithubSearch) {
-        this.suggestions = this.search.valueChanges
-            .debounceTime(400)
-            .map(keyword => keyword.trim())
-            .filter(keyword => keyword.length > 0)
-            .distinctUntilChanged()
-            .map(keyword => github.searchUsers(keyword))
-            .switch();
-    }
-}
-                            </code></pre>
-                        </div>
-
-                    </div>
-                    <!-- http://plnkr.co/edit/sJ7nopEGhhhTXyVuwccf -->
-                    <!-- http://plnkr.co/edit/gPInaMHTbVsI17oKQV9u -->
-                </section>
-
-                <section>
-                    <h4>Component as a Black Box</h4>
-                    <img src="img/black-box.png" alt="">
-                </section>
-
-                <section>
-                    <h3>Demo Time</h3>
-                </section>
-
                 <section style="text-align: left;">
                     <h1>THE END</h1>
                     <ul>
                         <li><a href="http://reactivex.io/">ReactiveX</a></li>
+                        <li><a href="https://github.com/ReactiveX/RxJava">RxJava</a></li>
                         <li><a href="https://www.youtube.com/watch?v=WKore-AkisY">A
                             Playful Introduction to Rx by Erik Meijer</a></li>
                         <li><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">The
                             introduction to Reactive Programming <br> you've been missing</a></li>
-                        <li><a href="http://jhusain.github.io/learnrx/">Interactive tutorial
-                            to FRP in JavaScript</a></li>
-                        <li><a href="https://jhades-blog.herokuapp.com/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/">How
-                            to build Angular 2 apps using <br> Observable Data Services</a></li>
-                        <li><a href="https://github.com/cvuorinen/angular2-excel">Demo:
-                            Angular 2 Excel</a></li>
                     </ul>
                 </section>
 
