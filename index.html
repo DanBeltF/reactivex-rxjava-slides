@@ -113,7 +113,7 @@
                          data-callout="em:contains('Java: ')"
                          data-callout-offset-left="-120"
                          data-callout-offset-top="-40"
-                         data-callout-offset-size="270">
+                         data-callout-offset-size="250">
                          <div class="callout-circle"></div>
                     	</div>
                         <li>JavaScript: <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">RxJS</a></li>
@@ -280,7 +280,32 @@ const firstThree = delayed.take(3);
 		<section>
 		    <h2>Examples</h2>
 		</section>
+		
+		<section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code java" contenteditable data-trim>
+public static void hello(String... names) {
+    Observable.from(names).subscribe(new Action1<String>() {
 
+        @Override
+        public void call(String s) {
+            System.out.println("Hello " + s + "!");
+        }
+
+    });
+}
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
+		
                 <section>
                     <div class="cols">
                         <div class="col">
