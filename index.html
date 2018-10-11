@@ -51,19 +51,19 @@
                     <h2>Reactive Programming</h2>
                     <h4>with ReactiveX & RxJava</h4>
                     <br>
-                    <p>by <a href="">Daniel Beltran</a> /
+                    <p>by <!--a href=""-->Daniel Beltran<!--/a--> /
                         <a href="https://github.com/DanBeltF">@DanBeltF</a>
                     </p>
                 </section>
 
                 <section>
-                    <h4>Daniel Beltran</h4>
+                    <h4>Daniel Beltrán</h4>
                     <div style="width:600px; margin: 0 auto;">
                         <div class="pull-left">
-                            <a href="http://w3.fi" target="_blank">
-                            <img src="img/w3-logo.png" alt="">
+                            <a href="https://www.escuelaing.edu.co/es/programas/pregrado/Ingenier%C3%ADa+de+Sistemas" target="_blank">
+                            <img src="img/escuelaLogo.png" alt="">
                             <p>
-                                <a href="http://w3.fi/rekry/avoimet-tyopaikat/" target="_blank">w3.fi/rekry</a>
+                                <a href="http://www.escuelaing.edu.co" target="_blank">escuelaing.edu.co</a>
                             </p>
                         </a>
                         </div>
@@ -71,16 +71,16 @@
                         <div style="text-align:left;float:right;margin-top:30px;">
                             <h5>
                                 <i class="fa fa-lg fa-envelope" style="width:1.5em;"></i>
-                                <a href="http://twitter.com/cvuorinen" target="_blank">@cvuorinen</a>
+                                <a href="https://www.office.com/" target="_blank">daniel.beltran-f@mail.escuelaing.edu.co</a>
                             </h5>
                             <h5>
                                 <i class="fa fa-lg fa-github" style="width:1.5em;"></i>
-                                <a href="https://github.com/cvuorinen" target="_blank">cvuorinen</a>
+                                <a href="https://github.com/DanBeltF" target="_blank">DanBeltF</a>
                             </h5>
-                            <h5>
+                            <!--h5>
                                 <i class="fa fa-lg fa-rss" style="width:1.5em;"></i>
-                                <a href="http://cvuorinen.net" target="_blank">cvuorinen.net</a>
-                            </h5>
+                                <a href="http://abc.com" target="_blank">abc</a>
+                            </h5-->
                         </div>
                     </div>
                 </section>
@@ -101,14 +101,14 @@
                         ReactiveX
                     </h4>
                     <p style="clear:both;">
-                        An API for asynchronous programming <br> with observable streams
+                        An API for event-based and asynchronous programming <br> with observable streams
                     </p>
                 </section>
 
                 <section>
                     <h4>ReactiveX Languages</h4>
                     <ul style="width:40%;float:left;margin-left:15%;">
-                        <li>Java: <a href="https://github.com/ReactiveX/RxJava" target="_blank">RxJava</a></li>
+                        <li>Java: <a href="https://github.com/ReactiveX/RxJava" target="_blank"><em>RxJava</em></a></li>
                         <li>JavaScript: <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">RxJS</a></li>
                         <li>C#: <a href="https://github.com/Reactive-Extensions/Rx.NET" target="_blank">Rx.NET</a></li>
                         <li>C#(Unity): <a href="https://github.com/neuecc/UniRx" target="_blank">UniRx</a></li>
@@ -152,7 +152,17 @@
                          <div class="callout-circle"></div>
                     </div>
                 </section>
-
+				
+				<section>
+					<pre><code class="xml">
+					 &ltdependency&gt
+						&ltgroupId&gtio.reactivex.rxjava&lt&solgroupId&gt
+							&ltartifactId&gtrxjava&lt&solartifactId&gt
+						&ltversion&gt2.2.2&lt&solversion&gt
+					 &lt&soldependency&gt
+					</code></pre>
+				</section>
+				
                 <section>
                     <h3>Observable stream</h3>
                     <pre><code data-trim class="java">
@@ -186,8 +196,8 @@ public interface Subscription {
                         <li>merge</li>
                         <li>zip</li>
                         <li>switch</li>
-                        <li>and many more...</li>
-                        <li class="fragment">many many many more</li>
+                        <li>and many more</li>
+                        <li class="fragment">many many more...</li>
                     </ul>
                 </section>
 
@@ -262,16 +272,20 @@ const firstThree = delayed.take(3);
                 <section>
                     <div class="cols">
                         <div class="col">
-                            <pre><code class="code javascript" contenteditable data-trim>
-const source = Rx.Observable
-  .interval(1000)
-  .take(5)
-
-source.subscribe(
-  (x) => print("x = " + x)
+                            <pre><code class="code java" contenteditable data-trim>
+List<String> words = Arrays.asList(
+ "the",
+ "quick",
+ "brown",
+ "fox",
+ "jumped",
+ "over",
+ "the",
+ "lazy",
+ "dog"
 );
-
-
+Observable.from(words)
+          .subscribe(System.out::println);
                             </code></pre>
                         </div>
                         <div class="col output">
@@ -348,14 +362,14 @@ clickCount$
                 </section>
 
                 <section style="text-align: left;">
-                    <h1>THE END</h1>
+                    <h1>RESOURCES</h1>
                     <ul>
                         <li><a href="http://reactivex.io/">ReactiveX</a></li>
                         <li><a href="https://github.com/ReactiveX/RxJava">RxJava</a></li>
                         <li><a href="https://www.youtube.com/watch?v=WKore-AkisY">A
                             Playful Introduction to Rx by Erik Meijer</a></li>
                         <li><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">The
-                            introduction to Reactive Programming <br> you've been missing</a></li>
+                            introduction to Reactive Programming <br> you've been missing by andrestaltz</a></li>
                     </ul>
                 </section>
 
