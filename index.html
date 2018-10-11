@@ -158,7 +158,8 @@
                          data-callout-offset-size="180">
                          <div class="callout-circle"></div>
                     </div>
-                </section>	
+                </section>
+		    
 		<section>
 		    <h3>Maven dependency</h3>
 		<pre><code class="xml">
@@ -283,9 +284,14 @@ const firstThree = delayed.take(3);
                 <section>
                     <div class="cols">
                         <div class="col">
-                            <pre><code class="code java" contenteditable data-trim>
-Observable<String> names = Observable.just("Spock", "McCoy");
-names.startWith("Kirk").subscribe(item -> System.out.println(item));
+                            <pre><code class="code javascript" contenteditable data-trim>
+const source = Rx.Observable
+  .interval(1000)
+  .take(5)
+
+source.subscribe(
+  (x) => print("x = " + x)
+);
                             </code></pre>
                         </div>
                         <div class="col output">
