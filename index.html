@@ -275,24 +275,17 @@ const firstThree = delayed.take(3);
                         <div class="callout-text">Cold Observables <br>are not shared</div>
                     </div>
                 </section>
+		
+		<section>
+		    <h2>Examples</h2>
+		</section>
 
                 <section>
                     <div class="cols">
                         <div class="col">
                             <pre><code class="code java" contenteditable data-trim>
-List&ltString&gt words = Arrays.asList(
- "the",
- "quick",
- "brown",
- "fox",
- "jumped",
- "over",
- "the",
- "lazy",
- "dog"
-);
-Observable.from(words)
-          .subscribe(System.out::println);
+Observable<String> names = Observable.just("Spock", "McCoy");
+names.startWith("Kirk").subscribe(item -> System.out.println(item));
                             </code></pre>
                         </div>
                         <div class="col output">
