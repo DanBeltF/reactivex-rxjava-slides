@@ -285,6 +285,7 @@ const firstThree = delayed.take(3);
                     <div class="cols">
                         <div class="col">
                             <pre><code class="code java" contenteditable data-trim>
+import io.reactivex.Observable;
 public static void hello(String... names) {
     Observable.from(names).subscribe(new Action1<String>() {
 
