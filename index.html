@@ -108,7 +108,7 @@
                 <section>
                     <h4>ReactiveX Languages</h4>
                     <ul style="width:40%;float:left;margin-left:15%;">
-                        <li><em>Java: <a href="https://github.com/ReactiveX/RxJava" target="_blank">RxJava</a></em></li>
+                        <li>Java: <a href="https://github.com/ReactiveX/RxJava" target="_blank">RxJava</a></li>
 			<div class="fragment callout"
                          data-callout="em:contains('Java: ')"
                          data-callout-offset-left="-120"
@@ -294,13 +294,40 @@ public static void hello(String... names) {
     });
 }
                     </code></pre>
-		    <pre><code data-trim class="java"><br>
+		    <pre><code data-trim class="java">
 hello("Ben", "George");
 Hello Ben!
 Hello George!
 		    </code></pre>
                 </section>
-		
+		<section>
+		    <pre><code data-trim class="java">
+Observable.just(1, 2, 3)
+          .subscribe(new Subscriber<Integer>() {
+	@Override
+	public void onNext(Integer item) {
+	    System.out.println("Next: " + item);
+	}
+
+	@Override
+	public void onError(Throwable error) {
+    	    System.err.println("Error: " + error.getMessage());
+	}
+
+	@Override
+	public void onCompleted() {
+    	    System.out.println("Sequence complete.");
+	}
+    });
+    		    </code></pre>
+		    <pre><code data-trim class="java">
+Next: 1
+Next: 2
+Next: 3
+Sequence complete.
+		    </code></pre>
+		</section>
+			
                 <section>
                     <div class="cols">
                         <div class="col">
