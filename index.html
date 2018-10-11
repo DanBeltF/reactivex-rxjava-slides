@@ -282,23 +282,23 @@ const firstThree = delayed.take(3);
 		</section>
 		
 		<section>
-                    <div class="cols">
-                        <div class="col">
-                            <pre><code class="code java" contenteditable data-trim>
-import io.reactivex.Observable;
-String names = "Ben";
-Observable.from(names).subscribe(new Action1<String>() {
-System.out.println("Hello " + s + "!");
-};
-                            </code></pre>
-                        </div>
-                        <div class="col output">
-                            <pre></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
+                    <pre><code data-trim class="java">
+public static void hello(String... names) {
+    Observable.from(names).subscribe(new Action1<String>() {
+
+        @Override
+        public void call(String s) {
+            System.out.println("Hello " + s + "!");
+        }
+
+    });
+}
+                    </code></pre>
+		    <pre><code data-trim class="java"><br>
+hello("Ben", "George");
+Hello Ben!
+Hello George!
+		    </code></pre>
                 </section>
 		
                 <section>
