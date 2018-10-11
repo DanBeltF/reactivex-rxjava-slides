@@ -108,7 +108,7 @@
                 <section>
                     <h4>ReactiveX Languages</h4>
                     <ul style="width:40%;float:left;margin-left:15%;">
-                        <li>Java: <a href="https://github.com/ReactiveX/RxJava" target="_blank"><em>RxJava</em></a></li>
+                        <li><em>Java: <a href="https://github.com/ReactiveX/RxJava" target="_blank">RxJava</a></em></li>
                         <li>JavaScript: <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">RxJS</a></li>
                         <li>C#: <a href="https://github.com/Reactive-Extensions/Rx.NET" target="_blank">Rx.NET</a></li>
                         <li>C#(Unity): <a href="https://github.com/neuecc/UniRx" target="_blank">UniRx</a></li>
@@ -151,17 +151,16 @@
                          data-callout-offset-size="180">
                          <div class="callout-circle"></div>
                     </div>
-                </section>
-				
-				<section>
-					<pre><code class="xml">
-					 &ltdependency&gt
-						&ltgroupId&gtio.reactivex.rxjava&lt&solgroupId&gt
-							&ltartifactId&gtrxjava&lt&solartifactId&gt
-						&ltversion&gt2.2.2&lt&solversion&gt
-					 &lt&soldependency&gt
-					</code></pre>
-				</section>
+                </section>	
+		<section>
+			<pre><code class="xml">
+			&ltdependency&gt
+				&ltgroupId&gtio.reactivex.rxjava&lt/groupId&gt
+					&ltartifactId&gtrxjava&lt/artifactId&gt
+				&ltversion&gt2.2.2&lt/version&gt
+			&lt/dependency&gt
+			</code></pre>
+		</section>
 				
                 <section>
                     <h3>Observable stream</h3>
@@ -273,7 +272,7 @@ const firstThree = delayed.take(3);
                     <div class="cols">
                         <div class="col">
                             <pre><code class="code java" contenteditable data-trim>
-List<String> words = Arrays.asList(
+List&ltString&gt words = Arrays.asList(
  "the",
  "quick",
  "brown",
