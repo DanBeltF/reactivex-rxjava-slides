@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "babel-standalone": "^6.4.4",
-    "express": "~2.5.9",
+    "express": "~3.11.0",
     "jquery": "^3.0.0",
     "mustache": "~2.2.1",
     "rx": "^2.5.2",
