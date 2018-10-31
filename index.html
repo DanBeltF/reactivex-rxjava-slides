@@ -69,6 +69,7 @@
                         </div>
 
                         <div style="text-align:left;float:right;margin-top:30px;">
+                            <br>
                             <h5>
                                 <i class="fa fa-lg fa-envelope" style="width:1.5em;"></i>
                                 <a href="https://www.office.com/" target="_blank">daniel.beltran-f</a>
@@ -84,7 +85,7 @@
                 <section>
                     <h3 class="rx-title">
                         <img src="img/Rx_Logo_S.png" alt="">
-						<br>
+                        <br>
                         ReactiveX
                     </h3>
 		    <br>
@@ -137,6 +138,26 @@
                         <li><a href="http://reactivex.io/documentation/operators.html#transforming" target="_blank">To Convert</a></li>
                     </ul>
                 </section>
+                
+                <section>
+                    <h3>Observable stream</h3>
+                    <pre><code data-trim class="java">
+public class Observable {
+    Subscription subscribe(Observer observer) { ... }
+}
+
+public interface Observer {
+    void onCompleted();
+    void onError(error);
+    void onNext(value);
+}
+
+public interface Subscription {
+    void unsubscribe();
+    boolean isUnsubscribed();
+}
+                    </code></pre>
+                </section>
 				
                 <section>
                     <section>
@@ -146,7 +167,7 @@
 			</a>
                     </section>
                     <section>
-                        <h3>Combines sets of items emitted by two or more Observables</h3>    
+                        <h4>Combines sets of items emitted by two or more Observables</h4>
                     </section>
                     <section>
                         <div class="cols">
@@ -182,7 +203,7 @@ Console.WriteLine,
 			</a>
                     </section>
                     <section>
-                        <h3></h3>
+                        <h4>Combines the latest item emitted by each Observable via a specified function and emit items based on the results of this function</h4>
                         <iframe class="marble-container" src="rxmarbles.html?type=combineLatest" frameborder="0"></iframe>
                     </section>
                     <section>
@@ -210,7 +231,7 @@ Console.WriteLine,
 			</a>
                     </section>
                     <section>
-                        <h3></h3>
+                        <h4>Combines the items emitted by two Observables, and selects which items to combine based on duration-windows that you define on a per-item basis.</h4>
                     </section>
                     <section>
                         <div class="cols">
@@ -237,7 +258,7 @@ Console.WriteLine,
 			</a>
                     </section>
                     <section>
-                        <h3></h3>
+                        <h4>Combines multiple Observables into one by merging their emissions</h4>
                         <iframe class="marble-container" src="rxmarbles.html?type=merge" frameborder="0"></iframe>
                     </section>
                     <section>
@@ -265,7 +286,7 @@ Console.WriteLine,
 			</a>
                     </section>
                     <section>
-                        <h3></h3>
+                        <h4>Emits a specified sequence of items before beginning to emit the items from the source Observable</h4>
                         <iframe class="marble-container" src="rxmarbles.html?type=startWith" frameborder="0"></iframe>
                     </section>
                     <section>
@@ -293,7 +314,7 @@ Console.WriteLine,
 			</a>
                     </section>
                     <section>
-                        <h3></h3>
+                        <h4>Converts an Observable that emits Observables into a single Observable that emits the items emitted by the most-recently-emitted of those Observables</h4>
                     </section>
                     <section>
                         <div class="cols">
@@ -320,14 +341,23 @@ Console.WriteLine,
 			</a>
                     </section>
                     <section>
-                        <h3></h3>
+                        <h4></h4>
                         <iframe class="marble-container" src="rxmarbles.html?type=zip" frameborder="0"></iframe>
                     </section>
                     <section>
                         <div class="cols">
                         <div class="col">
                         <pre><code class="code javascript" contenteditable data-trim>
-
+//Generate values 0,1,2 
+var nums = Observable.Interval(TimeSpan.FromMilliseconds(250))
+.Take(3);
+//Generate values a,b,c,d,e,f 
+var chars = Observable.Interval(TimeSpan.FromMilliseconds(150))
+.Take(6)
+.Select(i => Char.ConvertFromUtf32((int)i + 97));
+//Zip values together
+nums.Zip(chars, (lhs, rhs) => new { Left = lhs, Right = rhs })
+.Dump("Zip");
                         </code></pre>
                         </div>
                             <div class="col output">
@@ -338,32 +368,6 @@ Console.WriteLine,
                             <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
                         </div>
                     </section>
-                </section>
-				
-                <section>
-                    <h3>Observable stream</h3>
-                    <pre><code data-trim class="java">
-public class Observable {
-    Subscription subscribe(Observer observer) { ... }
-}
-
-public interface Observer {
-    void onCompleted();
-    void onError(error);
-    void onNext(value);
-}
-
-public interface Subscription {
-    void unsubscribe();
-    boolean isUnsubscribed();
-}
-                    </code></pre>
-                </section>
-
-                <section>
-                    <h4>Visualization with <br> Marble Diagrams</h4>
-                    <img src="img/marble-diagram-legend.png" alt="">
-                    <p><a target="_blank" href="http://rxmarbles.com/">RxMarbles.com</a></p>
                 </section>
 		
 		<section>
