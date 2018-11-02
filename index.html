@@ -161,6 +161,41 @@ Sequence complete.
 		    </code></pre>
 		</section>
 
+                
+                
+                
+                <section>
+                    <div style="height:60px;text-align:left;position:relative;">
+                                <input type="text" id="autocomplete" style="font-size:16px;padding:5px;">
+                                <div id="autocomplete-suggestions"></div>
+                            </div>
+                    <div class="cols2">
+                        <div class="col2">
+                            <pre><code class="code" contenteditable data-trim class="javascript">
+Rx.Observable
+  .fromEvent($("#autocomplete"), "keyup")
+  .throttle(500)
+  .map(function (e) { return e.target.value; })
+  .filter(function (keyword) { return keyword.length > 0; })
+  .distinctUntilChanged()
+  .map(searchWikipedia)
+  .switchLatest()
+  .subscribe(function (data) {
+    $("#autocomplete-suggestions").html('');
+    data[1].map(function (result) {
+      $("#autocomplete-suggestions")
+        .append("<div>" + result + "</div>");
+    });
+  });
+                            </code></pre>
+                        </div>
+                     </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
+                
+                
                 <section>
                     <h4>ReactiveX Operators</h4>
                     <h5>by category</h5>
