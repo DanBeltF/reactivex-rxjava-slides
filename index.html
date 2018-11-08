@@ -131,38 +131,10 @@ public interface Subscription {
 }
                     </code></pre>
                 </section>
-		
+                
                 <section>
-                    <h3>Example</h3>
-		    <pre><code data-trim class="java">
-Observable.just(1, 2, 3)
-          .subscribe(new Subscriber<Integer>() {
-	@Override
-	public void onNext(Integer item) {
-	    System.out.println("Next: " + item);
-	}
-
-	@Override
-	public void onError(Throwable error) {
-    	    System.err.println("Error: " + error.getMessage());
-	}
-
-	@Override
-	public void onCompleted() {
-    	    System.out.println("Sequence complete.");
-	}
-    });
-    		    </code></pre>
-		    <pre><code data-trim class="java">
-Next: 1
-Next: 2
-Next: 3
-Sequence complete.
-		    </code></pre>
-		</section>
-
-                
-                
+                    <img src="img/illustrationFlow.png">
+                </section>
                 
                 <section>
                     <div style="height:60px;text-align:left;position:relative;">
@@ -195,6 +167,13 @@ Rx.Observable
                     </div>
                 </section>
                 
+                <section>
+                    <img src="img/explanationRxMarble.png">
+                </section>
+                
+                <section>
+                    <img src="img/iterable_observable.png">
+                </section>
                 
                 <section>
                     <h4>ReactiveX Operators</h4>
@@ -285,16 +264,14 @@ Observable.combineLatest(newsRefreshes, weatherRefreshes,
     .subscribe(item -> System.out.println(item));
     		    </code></pre>
 		    <pre><code data-trim class="java">
-// prints:
-// Refreshed news 0 times and weather 0
-// Refreshed news 0 times and weather 1
-// Refreshed news 0 times and weather 2
-// Refreshed news 1 times and weather 2
-// Refreshed news 1 times and weather 3
-// Refreshed news 1 times and weather 4
-// Refreshed news 2 times and weather 4
-// Refreshed news 2 times and weather 5
-// ...
+Refreshed news 0 times and weather 0
+Refreshed news 0 times and weather 1
+Refreshed news 0 times and weather 2
+Refreshed news 1 times and weather 2
+Refreshed news 1 times and weather 3
+Refreshed news 1 times and weather 4
+Refreshed news 2 times and weather 4
+Refreshed news 2 times and weather 5
 		    </code></pre>
                     </section>
                 </section>
@@ -489,57 +466,6 @@ James Kirk, Jean-Luc Picard, Benjamin Sisko
                 </section>		
                 
                 <section>
-                    <pre><code data-trim class="java">
-public class NetworkRequestTask extends AsyncTask<Void, Void, User> {
-
-    private final int userId;
-
-    public NetworkRequestTask(int userId) {
-        this.userId = userId;
-    }
-
-    @Override protected User doInBackground(Void... params) {
-        return networkService.getUser(userId);
-    }
-
-    @Override protected void onPostExecute(User user) {
-        nameTextView.setText(user.getName());
-        // ...set other views
-    }
-}
-   
-private void onButtonClicked(Button button) {
-   new NetworkRequestTask(123).execute()
-}
-    		    </code></pre>
-                </section>
-                
-                <section>
-                    <pre><code data-trim class="java">
-private Subscription subscription;
-
-private void onButtonClicked(Button button) {
-   subscription = networkService.getObservableUser(123)
-                      .subscribeOn(Schedulers.io())
-                      .observeOn(AndroidSchedulers.mainThread())
-                      .subscribe(new Action1<User>() {
-                          @Override public void call(User user) {
-                              nameTextView.setText(user.getName());
-                              // ... set other views
-                          }
-                      });
-}
-
-@Override protected void onDestroy() {
-   if (subscription != null && !subscription.isUnsubscribed()) {
-       subscription.unsubscribe();
-   }
-   super.onDestroy();
-}
-    		    </code></pre>
-                </section>
-                
-                <section>
                     <h3>Reactive Programming in the Netflix API with RxJava</h3>
                     <br>
                     <ul>
@@ -547,20 +473,6 @@ private void onButtonClicked(Button button) {
 			<li>Java Futures are Expensive to Compose</li>
 			<li>Callbacks Have Their Own Problems</li>
 		    </ul>
-                </section>
-                
-                <section>
-                    <p><strong>Reactive</strong></p>
-                    <div class="fragment callout position-bottom"
-                        data-callout="strong:contains('Reactive')">
-                        <div class="callout-arrow"></div>
-                        <div class="callout-text">The ability for the producer<br> to signal to the consumer that there is no more data available.</div>
-                    </div>
-                    <div class="fragment callout position-top"
-                        data-callout="strong:contains('Reactive')">
-                        <div class="callout-text">The ability for the producer<br> to signal to the consumer that there is no more data available.</div>
-                        <div class="callout-arrow"></div>                           
-                    </div>
                 </section>
                 
                 <section>
@@ -575,6 +487,15 @@ private void onButtonClicked(Button button) {
                     <h4>Multiple tasks can be executed <strong>parallel</strong><br>
                         and the code is easy to maintain<br>
                         when data from <em>multiple sources</em> need to be handled.</h4>
+                </section>
+                
+                <section style="text-align: left;">
+                    <h1>State of the art</h1>
+                    <ul>
+                        <li><a href="http://lup.lub.lu.se/luur/download?func=downloadFile&recordOId=8932146&fileOId=8932147">Reactive programming and its<br>effect on performance and the<br>development process</a></li>
+                        <li><a href="http://gotocon.com/dl/goto-aar-2013/slides/BenChristensen_FunctionalReactiveProgrammingWithRxJava.pdf">Functional Reactive in the Netflix API with RxJava</a></li>
+                        <li><a href="https://medium.com/ninjadevs/writing-a-blockchain-with-rxjs-3768b7b838c1">Writing a blockchain with RxJS</a></li> 
+                    </ul>
                 </section>
 
                 <section style="text-align: left;">
