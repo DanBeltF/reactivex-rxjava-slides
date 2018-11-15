@@ -5,7 +5,9 @@
         <meta charset="utf-8">
 
         <title>Reactive Programming (RxJava)</title>
-
+        
+        <link rel="icon" href="http://reactivex.io/favicon.ico">
+        
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
@@ -48,7 +50,7 @@
                     
                     <br><br>
                     <h3>ReactiveX in</h3>
-                    <h2>Combining Operators &amp; Practical Example</h2>
+                    <h2>Combining Operators &amp; Implementations Examples</h2>
                     <h4>with RxJava</h4>
                     <br>
                     <p>by <!--a href=""-->Daniel Beltran<!--/a--> /
@@ -61,11 +63,10 @@
                     <div style="width:600px; margin: 0 auto;">
                         <div class="pull-left">
                             <a href="https://www.escuelaing.edu.co/es/programas/pregrado/Ingenier%C3%ADa+de+Sistemas" target="_blank">
-                            <img src="img/escuelaLogo.png" alt="">
+                            <img src="img/escuelaLogo.png" alt=""></a>
                             <p>
                                 <a href="http://www.escuelaing.edu.co" target="_blank">escuela</a>
                             </p>
-                        </a>
                         </div>
 
                         <div style="text-align:left;float:right;margin-top:30px;">
@@ -497,6 +498,10 @@ James Kirk, Jean-Luc Picard, Benjamin Sisko
                         <li><a href="https://medium.com/ninjadevs/writing-a-blockchain-with-rxjs-3768b7b838c1">Writing a blockchain with RxJS</a></li> 
                     </ul>
                 </section>
+                
+                <section data-background-iframe="http://gotocon.com/dl/goto-aar-2013/slides/BenChristensen_FunctionalReactiveProgrammingWithRxJava.pdf" data-background-interactive>
+                    <!-- Netflix Presentation -->
+                </section>
 
                 <section style="text-align: left;">
                     <h1>RESOURCES</h1>
@@ -532,8 +537,9 @@ James Kirk, Jean-Luc Picard, Benjamin Sisko
                 progress: true,
                 history: true,
                 center: true,
+                previewLinks: true,
                 transition: 'slide', // none/fade/slide/convex/concave/zoom
-				transitionSpeed: 'fast',
+                transitionSpeed: 'fast',
                 // Optional reveal.js plugins
                 dependencies: [
                     { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
@@ -543,6 +549,22 @@ James Kirk, Jean-Luc Picard, Benjamin Sisko
                     { src: 'plugin/zoom-js/zoom.js', async: true },
                     { src: 'plugin/notes/notes.js', async: true }
                 ]
+            });
+            
+            Reveal.configure({
+                keyboard: {
+                    33: 'prev', // page up
+                    34: 'next', // page down
+                    66: null, // b
+                    70: null, // f
+                    73: 'up', // i
+                    74: 'left', // j
+                    75: 'down', // k
+                    76: 'right', // l
+                    78: null, // n
+                    79: null, // o
+                    80: null,  // p
+                }
             });
         </script>
 
