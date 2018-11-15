@@ -176,7 +176,7 @@ public interface Subscription {
                         </div>
 			<li>Subscribers (or Observers)</li>
                         <div class="fragment callout position-right"
-                            data-callout="li:contains('Observers')">
+                            data-callout="li:contains('Subscribers')">
                             <div class="callout-arrow"></div>
                             <div class="callout-text">consuming those items</div>
                         </div>
@@ -249,32 +249,38 @@ public interface Subscription {
                         <img src="img/and_then_when.png" alt="">
                     </section>
                     <section>
-                        <pre><code data-trim class="javascript" style="">
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
 var one = Observable.Interval(TimeSpan.FromSeconds(1)).Take(5);
-var two = Observable.Interval(TimeSpan.FromMilliseconds(250)).Take(4);
-var three = Observable.Interval(TimeSpan.FromMilliseconds(150)).Take(3);
+var two = Observable.Interval(TimeSpan.FromMilliseconds(250)).Take(10);
+var three = Observable.Interval(TimeSpan.FromMilliseconds(150)).Take(14);
 
-var zippedSequence = Observable.When(
-    one.And(two)
-        .And(three)
-        .Then((first, second, third) => 
-         new { 
-            One = first, 
-            Two = second, 
-            Three = third 
-         })
-    );
-zippedSequence.Subscribe(
-    Console.WriteLine,
-    () => Console.WriteLine("Completed"));
-    		    </code></pre>
-		    <pre><code data-trim class="java">
-One = 1 2 3 4 5
-Two = 251 252 253 254 
-Three = 150 151 152
-Completed
-		    </code></pre>
-                    </section>
+var pattern = one.And(two).And(three);
+var plan = pattern.Then((first, second, third)=>new{One=first, Two=second, Three=third});
+var zippedSequence = Observable.When(plan);
+
+var subscription = zippedSequence.subscribe(
+    function (x) {
+        print('Next: ' + x.toString());
+    },
+    function (err) {
+        print('Error: ' + err);
+    },
+    function () {
+        print('Completed');
+    });
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
+
                 </section>
 
                 <section>
@@ -289,25 +295,42 @@ Completed
                         <iframe class="marble-container" src="rxmarbles.html?type=combineLatest" frameborder="0"></iframe>
                     </section>
                     <section>
-                        <pre><code data-trim class="java" style="">
-Observable<Long> newsRefreshes = Observable.interval(100, TimeUnit.MILLISECONDS);
-Observable<Long> weatherRefreshes = Observable.interval(50, TimeUnit.MILLISECONDS);
-Observable.combineLatest(newsRefreshes, weatherRefreshes,
-    (newsRefreshTimes, weatherRefreshTimes) ->
-        "Refreshed news " + newsRefreshTimes + " times and weather " + weatherRefreshTimes)
-    .subscribe(item -> System.out.println(item));
-    		    </code></pre>
-		    <pre><code data-trim class="java">
-Refreshed news 0 times and weather 0
-Refreshed news 0 times and weather 1
-Refreshed news 0 times and weather 2
-Refreshed news 1 times and weather 2
-Refreshed news 1 times and weather 3
-Refreshed news 1 times and weather 4
-Refreshed news 2 times and weather 4
-Refreshed news 2 times and weather 5
-		    </code></pre>
-                    </section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+/* Have staggering intervals */
+var source1 = Rx.Observable.interval(100)
+    .map(function (i) { return 'First: ' + i; });
+
+var source2 = Rx.Observable.interval(150)
+    .map(function (i) { return 'Second: ' + i; });
+
+// Combine latest of source1 and source2 whenever either gives a value
+var source = source1.combineLatest(
+        source2,
+        function (s1, s2) { return s1 + ', ' + s2; }
+    ).take(4);
+
+var subscription = source.subscribe(
+    function (x) {
+        print('Next: ' + x.toString());
+    },
+    function (err) {
+        print('Error: ' + err);
+    },
+    function () {
+        print('Completed');
+    });
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
                 </section>
                 
                 <section>
@@ -322,35 +345,38 @@ Refreshed news 2 times and weather 5
                         <img src="img/join.png" alt="">
                     </section>
                     <section>
-                        <pre><code data-trim class="java" style="">
-Observable<Long> left = Observable
-        .interval(100, TimeUnit.MILLISECONDS);
-Observable<Long> right = Observable
-        .interval(100, TimeUnit.MILLISECONDS);
-left.join(right,
-        aLong -> Observable.timer(0, TimeUnit.SECONDS),
-        aLong -> Observable.timer(0, TimeUnit.SECONDS),
-        (l, r) -> {System.out.println("Left result: " + l + " Right Result: " + r);
-            return l + r;})
-        .subscribe(new Observer<Long>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-            }
-            @Override
-            public void onNext(Long aLong) {
-                System.out.println("onNext: " + aLong);
-            }
-        });
-    		    </code></pre>
-                        <pre><code data-trim class="java">
-Left result: 0 Right Result: 0      Left result: 3 Right Result: 3
-onNext: 0                           onNext: 6
-Left result: 1 Right Result: 1      Left result: 5 Right Result: 5
-onNext: 2                           onNext: 10
-Left result: 2 Right Result: 2
-onNext: 4
-		    </code></pre>
-                    </section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+var xs = Rx.Observable.interval(100)
+    .map(function (x) { return 'first' + x; });
+
+var ys = Rx.Observable.interval(100)
+    .map(function (x) { return 'second' + x; });
+
+var source = xs
+    .join(
+        ys,
+        function () { return Rx.Observable.timer(0); },
+        function () { return Rx.Observable.timer(0); },
+        function (x, y) { return x + y; }
+    )
+    .take(5);
+
+var subscription = source.subscribe(
+    function (x) { print('Next: ' + x); },
+    function (err) { print('Error: ' + err); },
+    function () { print('Completed'); });
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
                 </section>
                 
                 <section>
@@ -366,34 +392,47 @@ onNext: 4
                     </section>
                     <section>
                         <pre><code data-trim class="java" style="">
-Observable<Integer> odds = Observable.just(1, 3, 5);
-Observable<Integer> evens = Observable.just(2, 4, 6);
-Observable.merge(odds, evens)
-          .subscribe(new Subscriber<Integer>() {
-        @Override
-        public void onNext(Integer item) {
-            System.out.println("Next: " + item);
-        }
-        @Override
-        public void onError(Throwable error) {
-            System.err.println("Error: " + error.getMessage());
-        }
-        @Override
-        public void onCompleted() {
-            System.out.println("Sequence complete.");
-        }
-    });
+Observable.just(1, 2, 3)
+    .mergeWith(Observable.just(4, 5, 6))
+    .subscribe(item -> System.out.println(item));
     		    </code></pre>
 		    <pre><code data-trim class="java">
-Next: 1
-Next: 3
-Next: 5
-Next: 2
-Next: 4
-Next: 6
-Sequence complete.
+1, 2, 3, 4, 5, 6
 		    </code></pre>
                     </section>
+                    
+                    <section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+//Generate values 0,1,2 
+var s1 = Rx.Observable.interval(TimeSpan.FromSeconds(250))
+    .Take(3);
+//Generate values 100,101,102,103,104 
+var s2 = Rx.Observable.interval(TimeSpan.FromSeconds(150))
+    .Take(5)
+    .Select(i => i + 100);
+
+var subscription = s1.merge(s2).subscribe(
+    function (x) {
+        print('Next: ' + x.toString());
+    },
+    function (err) {
+        print('Error: ' + err);
+    },
+    function () {
+        print('Completed');
+    });
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
                 </section>
                 
                 <section>
@@ -416,6 +455,34 @@ names.startWith("Kirk").subscribe(item -> System.out.println(item));
 Kirk, Spock, McCoy
 		    </code></pre>
                     </section>
+                    
+                    <section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+var source = Rx.Observable.range(0, 5);
+var result = source.startWith(-3, -2, -1);
+
+var subscription = result.subscribe(
+    function (x) {
+        print('Next: ' + x.toString());
+    },
+    function (err) {
+        print('Error: ' + err);
+    },
+    function () {
+        print('Completed');
+    });
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
                 </section>
                 
                 <section>
@@ -430,31 +497,28 @@ Kirk, Spock, McCoy
                         <img src="img/switch.png" alt="">
                     </section>
                     <section>
-                        <pre><code data-trim class="java" style="">
-Observable<Observable<String>> timeIntervals =
-    Observable.interval(1, TimeUnit.SECONDS)
-      .map(ticks -> Observable.interval(100, TimeUnit.MILLISECONDS)
-          .map(innerInterval -> "outer: " + ticks + " - inner: " + innerInterval));
-Observable.switchOnNext(timeIntervals)
-    .subscribe(item -> System.out.println(item));
-    		    </code></pre>
-		    <pre><code data-trim class="java">
-outer: 0 - inner: 0
-outer: 0 - inner: 1
-outer: 0 - inner: 2
-outer: 0 - inner: 3
-outer: 0 - inner: 4
-outer: 0 - inner: 5
-outer: 0 - inner: 6
-outer: 0 - inner: 7
-outer: 0 - inner: 8
-outer: 1 - inner: 0
-outer: 1 - inner: 1
-outer: 1 - inner: 2
-outer: 1 - inner: 3
-...
-		    </code></pre>
-                    </section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+var source = Rx.Observable.range(0, 3)
+    .select(function (x) { return Rx.Observable.range(x, 3); })
+    .switch();
+
+var subscription = source.subscribe(
+    function (x) { print('Next: ' + x); },
+    function (err) { print('Error: ' + err); },
+    function () { print('Completed'); });
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
+
                 </section>
                 
                 <section>
@@ -479,6 +543,42 @@ firstNames.zipWith(lastNames, (first, last) -> first + " " + last)
 James Kirk, Jean-Luc Picard, Benjamin Sisko
 		    </code></pre>
                     </section>
+                    <section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+/* Using arguments */
+var range = Rx.Observable.range(0, 5);
+
+var source = Rx.Observable.zip(
+    range,
+    range.skip(1),
+    range.skip(2),
+    function (s1, s2, s3) {
+        return s1 + ':' + s2 + ':' + s3;
+    }
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        print('Next: ' + x);
+    },
+    function (err) {
+        print('Error: ' + err);
+    },
+    function () {
+        print('Completed');
+    });
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
                 </section>
 		
 		<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
@@ -537,43 +637,7 @@ James Kirk, Jean-Luc Picard, Benjamin Sisko
                     <!-- Netflix Presentation -->
                 </section>
                 
-                <section>
-                    <div class="cols">
-                        <div class="col">
-                            <pre><code class="code javascript" contenteditable data-trim>
-/* Have staggering intervals */
-var source1 = Rx.Observable.interval(100)
-    .map(function (i) { return 'First: ' + i; });
-
-var source2 = Rx.Observable.interval(150)
-    .map(function (i) { return 'Second: ' + i; });
-
-// Combine latest of source1 and source2 whenever either gives a value
-var source = source1.combineLatest(
-        source2,
-        function (s1, s2) { return s1 + ', ' + s2; }
-    ).take(4);
-
-var subscription = source.subscribe(
-    function (x) {
-        print('Next: ' + x.toString());
-    },
-    function (err) {
-        print('Error: ' + err);
-    },
-    function () {
-        print('Completed');
-    });
-                            </code></pre>
-                        </div>
-                        <div class="col output">
-                            <pre></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
-                </section>
+                
                 
                 <section>
                     <div class="cols">
