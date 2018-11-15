@@ -91,29 +91,56 @@
                     </h3>
 		    <br>
                     <ul>
-			<li>Observables</li>
+			<li>Publishers (or Observables)</li>
 			<li>Subscribers (or Observers)</li>
-			<li>A set of <strong>methods</strong> for modifying the data</li>
-			<div class="fragment callout position-bottom"
-                            data-callout="strong:contains('methods')">
-                            <div class="callout-arrow"></div>
-                            <div class="callout-text">ReactiveX <br>Operators</div>
-                        </div>
+                        <li>Subscription</li>
 		    </ul>
                 </section>
                 
-				
-		<section>
-                    <h2>Manipulate items emitted by observables</h2>
-                    <div class="fragment">
-                        <h4>taking the observable as parameter</h4>
-                        <div class="fragment">
-                            <h5>returning a new observable</h5>
-                        </div>
-                    </div>
-		</section>
+                <section>
+                    <h2>Obervable types</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Flowable&lt;T&gt;</td>
+                                <td>Emits 0 or n items. <br>Supports backpressure.</td>
+                            </tr>
+                            <tr>
+                                <td>Observable&lt;T&gt;</td>
+                                <div class="fragment callout position-left"
+                                    data-callout="td:contains('Observable')">
+                                    <div class="callout-text">This <br>one!</div>
+                                    <div class="callout-arrow"></div>
+                                </div>
+                                <td>Emits 0 or n items.</td>
+                            </tr>
+                            <tr>
+                                <td>Single&lt;T&gt;</td>
+                                <td>Emits either 1 item or an error event.</td>
+                            </tr>
+                            <tr>
+                                <td>Maybe&lt;T&gt;</td>
+                                <td>Succeeds with an item, or no item, or errors.</td>
+                            </tr>
+                            <tr>
+                                <td>Completable</td>
+                                <td>Either completes with an success or with an error event. <br>It never emits items.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
                 
-                                <section>
+                <section>
+                    <img src="img/illustrationFlow.PNG">
+                </section>
+                
+                <section>
                     <h3>Observable stream</h3>
                     <pre><code data-trim class="java">
 public class Observable {
@@ -132,49 +159,51 @@ public interface Subscription {
 }
                     </code></pre>
                 </section>
-                
+		
                 <section>
-                    <img src="img/illustrationFlow.PNG">
-                </section>
-                
-                <section>
-                    <div style="height:60px;text-align:left;position:relative;">
-                                <input type="text" id="autocomplete" style="font-size:16px;padding:5px;">
-                                <div id="autocomplete-suggestions"></div>
-                            </div>
-                    <div class="cols2">
-                        <div class="col2">
-                            <pre><code class="code" contenteditable data-trim class="javascript">
-Rx.Observable
-  .fromEvent($("#autocomplete"), "keyup")
-  .throttle(500)
-  .map(function (e) { return e.target.value; })
-  .filter(function (keyword) { return keyword.length > 0; })
-  .distinctUntilChanged()
-  .map(searchWikipedia)
-  .switchLatest()
-  .subscribe(function (data) {
-    $("#autocomplete-suggestions").html('');
-    data[1].map(function (result) {
-      $("#autocomplete-suggestions")
-        .append("<div>" + result + "</div>");
-    });
-  });
-                            </code></pre>
+                    <h3 class="rx-title">
+                        <img src="img/Rx_Logo_S.png" alt="">
+                        <br>
+                        ReactiveX
+                    </h3>
+		    <br>
+                    <ul>
+			<li>Publishers (or Observables)</li>
+                        <div class="fragment callout position-right"
+                            data-callout="li:contains('Publishers')">
+                            <div class="callout-arrow"></div>
+                            <div class="callout-text">emitting <br>items</div>
                         </div>
-                     </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+			<li>Subscribers (or Observers)</li>
+                        <div class="fragment callout position-right"
+                            data-callout="li:contains('Observers')">
+                            <div class="callout-arrow"></div>
+                            <div class="callout-text">consuming those items</div>
+                        </div>
+                        <li>Subscription</li>
+                        <div class="fragment callout position-left"
+                            data-callout="li:contains('Subscription')">
+                            <div class="callout-text">one-to-one <br>relation</div>
+                            <div class="callout-arrow"></div>
+                        </div>
+			<li class="fragment fade-up">A set of <strong>methods</strong> for modifying the data</li>
+			<div class="fragment callout position-bottom"
+                            data-callout="strong:contains('methods')">
+                            <div class="callout-arrow"></div>
+                            <div class="callout-text">ReactiveX <br>Operators</div>
+                        </div>
+		    </ul>
+                </section>
+                
+		<section>
+                    <h2>Manipulate items emitted by observables</h2>
+                    <div class="fragment">
+                        <h4>taking the observable as <strong>parameter</strong></h4>
+                        <div class="fragment">
+                            <h5><em>returning</em> a new observable</h5>
+                        </div>
                     </div>
-                </section>
-                
-                <section>
-                    <img src="img/explanationRxMarble.PNG">
-                </section>
-                
-                <section>
-                    <img src="img/iterable_observable.PNG">
-                </section>
+		</section>
                 
                 <section>
                     <h4>ReactiveX Operators</h4>
@@ -202,6 +231,10 @@ Rx.Observable
                         <li><a href="http://reactivex.io/documentation/operators.html#connectable" target="_blank">Connectable</a></li>
                         <li><a href="http://reactivex.io/documentation/operators.html#transforming" target="_blank">To Convert</a></li>
                     </ul>
+                </section>
+                
+                <section>
+                    <img src="img/explanationRxMarble.PNG">
                 </section>
                 
                 <section>
@@ -448,20 +481,21 @@ James Kirk, Jean-Luc Picard, Benjamin Sisko
                     </section>
                 </section>
 		
-		<section>
-		    <h2>Practical Example</h2>
+		<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+		    <h2 style="color:#ffffff">Implementations Examples</h2>
+                    <h4 class="fragment grow" style="color:#ffffff">by third parties</h4>
 		</section>
 		
 		<section>
                     <h3>Rx helps us by:</h3>
                     <p>
-                        <span style="display: inline-block;" class="fragment fade-right">- handling the cache without creating caching classes</span>
+                        <span style="display: inline-block;" class="fragment fade-right">- Handling the cache without creating caching classes</span>
                         <br>
-                        <span style="display: inline-block;" class="fragment fade-up">- optimizing the code to increase an application response</span>
+                        <span style="display: inline-block;" class="fragment fade-up">- Optimizing the code to increase an application response</span>
                         <br>
-                        <span style="display: inline-block;" class="fragment fade-down">- making methods easier to combine</span>
+                        <span style="display: inline-block;" class="fragment fade-down">- Making methods easier to combine</span>
                         <br>
-                        <span style="display: inline-block;" class="fragment fade-left">- combining the reception of requests and results processing</span>
+                        <span style="display: inline-block;" class="fragment fade-left">- Combining the reception of requests and results processing</span>
                         <br>
                     </p>
                 </section>		
@@ -502,14 +536,99 @@ James Kirk, Jean-Luc Picard, Benjamin Sisko
                 <section data-background-iframe="http://gotocon.com/dl/goto-aar-2013/slides/BenChristensen_FunctionalReactiveProgrammingWithRxJava.pdf" data-background-interactive>
                     <!-- Netflix Presentation -->
                 </section>
+                
+                <section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+/* Have staggering intervals */
+var source1 = Rx.Observable.interval(100)
+    .map(function (i) { return 'First: ' + i; });
+
+var source2 = Rx.Observable.interval(150)
+    .map(function (i) { return 'Second: ' + i; });
+
+// Combine latest of source1 and source2 whenever either gives a value
+var source = source1.combineLatest(
+        source2,
+        function (s1, s2) { return s1 + ', ' + s2; }
+    ).take(4);
+
+var subscription = source.subscribe(
+    function (x) {
+        print('Next: ' + x.toString());
+    },
+    function (err) {
+        print('Error: ' + err);
+    },
+    function () {
+        print('Completed');
+    });
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
+                
+                <section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
+                
+                <section>
+                    <div style="height:60px;text-align:left;position:relative;">
+                                <input type="text" id="autocomplete" style="font-size:16px;padding:5px;">
+                                <div id="autocomplete-suggestions"></div>
+                            </div>
+                    <div class="cols2">
+                        <div class="col2">
+                            <pre><code class="code" contenteditable data-trim class="javascript">
+Rx.Observable
+  .fromEvent($("#autocomplete"), "keyup")
+  .throttle(500)
+  .map(function (e) { return e.target.value; })
+  .filter(function (keyword) { return keyword.length > 0; })
+  .distinctUntilChanged()
+  .map(searchWikipedia)
+  .switchLatest()
+  .subscribe(function (data) {
+    $("#autocomplete-suggestions").html('');
+    data[1].map(function (result) {
+      $("#autocomplete-suggestions")
+        .append("<div>" + result + "</div>");
+    });
+  });
+                            </code></pre>
+                        </div>
+                     </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
 
                 <section style="text-align: left;">
                     <h1>RESOURCES</h1>
                     <ul>
                         <li><a href="http://reactivex.io/">ReactiveX</a></li>
                         <li><a href="https://github.com/ReactiveX/RxJava">RxJava</a></li>
-                        <li><a href="https://www.youtube.com/watch?v=WKore-AkisY">A
-                            Playful Introduction to Rx by Erik Meijer</a></li>
+                        <li><a href="http://www.vogella.com/tutorials/RxJava/article.html#creating-observables-subscribing-to-them-and-disposing-them">
+                            Using reactive programming with RxJava</a></li>
                         <li><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">The
                             introduction to Reactive Programming <br> you've been missing by andrestaltz</a></li>
                     </ul>
