@@ -6,4 +6,6 @@ node_modules/
 .sass-cache
 css/reveal.min.css
 js/reveal.min.js
-nbproject/*
+nbproject/project.properties
+nbproject/project
+/nbproject/private/

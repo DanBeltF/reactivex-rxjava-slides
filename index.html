@@ -206,6 +206,10 @@ public interface Subscription {
 		</section>
                 
                 <section>
+                    <img src="img/explanationRxMarble.PNG">
+                </section>
+                
+                <section>
                     <h4>ReactiveX Operators</h4>
                     <h5>by category</h5>
                     <ul style="width:40%;float:left;margin-left:15%;">
@@ -234,10 +238,6 @@ public interface Subscription {
                 </section>
                 
                 <section>
-                    <img src="img/explanationRxMarble.PNG">
-                </section>
-                
-                <section>
                     <section>
 			<h2>And / Then / When</h2>
 			<a href="#" class="navigate-down">
@@ -252,13 +252,13 @@ public interface Subscription {
                     <div class="cols">
                         <div class="col">
                             <pre><code class="code javascript" contenteditable data-trim>
-var one = Observable.Interval(TimeSpan.FromSeconds(1)).Take(5);
-var two = Observable.Interval(TimeSpan.FromMilliseconds(250)).Take(10);
-var three = Observable.Interval(TimeSpan.FromMilliseconds(150)).Take(14);
+var one = Rx.Observable.Interval(TimeSpan.FromSeconds(1)).Take(5);
+var two = Rx.Observable.Interval(TimeSpan.FromMilliseconds(250)).Take(10);
+var three = Rx.Observable.Interval(TimeSpan.FromMilliseconds(150)).Take(14);
 
-var pattern = one.And(two).And(three);
-var plan = pattern.Then((first, second, third)=>new{One=first, Two=second, Three=third});
-var zippedSequence = Observable.When(plan);
+var pattern = one.and(two).and(three);
+var plan = pattern.thenDo((first, second, third) => new{One=first, Two=second, Three=third});
+var zippedSequence = Rx.Observable.when(plan);
 
 var subscription = zippedSequence.subscribe(
     function (x) {
@@ -627,9 +627,10 @@ var subscription = source.subscribe(
                 <section style="text-align: left;">
                     <h1>State of the art</h1>
                     <ul>
-                        <li><a href="http://lup.lub.lu.se/luur/download?func=downloadFile&recordOId=8932146&fileOId=8932147">Reactive programming and its<br>effect on performance and the<br>development process</a></li>
+                        <li><a href="http://lup.lub.lu.se/luur/download?func=downloadFile&recordOId=8932146&fileOId=8932147">Reactive programming and its effect on performance <br>and the development process</a></li>
                         <li><a href="http://gotocon.com/dl/goto-aar-2013/slides/BenChristensen_FunctionalReactiveProgrammingWithRxJava.pdf">Functional Reactive in the Netflix API with RxJava</a></li>
-                        <li><a href="https://medium.com/ninjadevs/writing-a-blockchain-with-rxjs-3768b7b838c1">Writing a blockchain with RxJS</a></li> 
+                        <li><a href="http://jsfiddle.net/staltz/8jFJH/48/">Implementing a "Who to follow" suggestions box</a></li>
+                        <li><a href="https://medium.com/ninjadevs/writing-a-blockchain-with-rxjs-3768b7b838c1">Writing a blockchain with RxJS</a></li>
                     </ul>
                 </section>
                 
