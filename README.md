@@ -1,6 +1,6 @@
-# Combining Observables and Implementations Examples (ReactiveX)
+# Genreal overview of reactive programming (ReactiveX)
 
 Slides made with [reveal.js](https://github.com/hakimel/reveal.js) for a presentation called: 
-**ReactiveX in Combining Operators & Implementations Examples with RxJava**
+**Reactive Extensions for Async Programming**
 
 Presentation: https://danbeltf.github.io/reactivex-rxjava-slides/#/

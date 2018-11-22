@@ -49,9 +49,9 @@
                     <img src="img/Rx_Logo_S.png" style="margin: 20px">
                     
                     <br><br>
-                    <h3>ReactiveX in</h3>
-                    <h2>Combining Operators &amp; Implementations Examples</h2>
-                    <h4>with RxJava</h4>
+                    <h3>General overview of</h3>
+                    <h2>Reactive Extensions</h2>
+                    <h4>for Async Programming</h4>
                     <br>
                     <p>by <!--a href=""-->Daniel Beltran<!--/a--> /
                         <a href="https://github.com/DanBeltF">@DanBeltF</a>
@@ -79,87 +79,77 @@
                                 <i class="fa fa-lg fa-github" style="width:1.5em;"></i>
                                 <a href="https://github.com/DanBeltF" target="_blank">@DanBeltF</a>
                             </h5>
+                            <h5>
+                                <i class="fa fa-graduation-cap" style="width:1.5em;"></i>
+                                <a href="https://github.com/DanBeltF" target="_blank">PGR1</a>
+                            </h5>
                         </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <p>
+                        Reactive == code that <br><strong>reacts to changes</strong>
+                    </p>
+                    <br>
+                    <p>
+                        Instead of imperative, <br>where the code <em>executes linearly</em>
+                    </p>
+                </section>
+                
+                <section>
+                    <h2>Everything is a Stream</h2>
+                    <div class="fragment">
+                        <h4>Streams are like collections</h4>
+                        <h6>except a bit different</h6>
                     </div>
                 </section>
 
                 <section>
-                    <h3 class="rx-title">
+                    <h2>Streams are Everywhere</h2>
+                </section>
+                
+                <section>
+                    <h4 class="rx-title">
                         <img src="img/Rx_Logo_S.png" alt="">
-                        <br>
                         ReactiveX
-                    </h3>
-		    <br>
-                    <ul>
-			<li>Publishers (or Observables)</li>
-			<li>Subscribers (or Observers)</li>
-                        <li>Subscription</li>
-		    </ul>
+                    </h4>
+                    <p style="clear:both;">
+                        An API for event-based and asynchronous programming <br> with observable streams
+                    </p>
                 </section>
                 
                 <section>
-                    <h2>Obervable types</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Flowable&lt;T&gt;</td>
-                                <td>Emits 0 or n items. <br>Supports backpressure.</td>
-                            </tr>
-                            <tr>
-                                <td>Observable&lt;T&gt;</td>
-                                <div class="fragment callout position-left"
-                                    data-callout="td:contains('Observable')">
-                                    <div class="callout-text">This <br>one!</div>
-                                    <div class="callout-arrow"></div>
-                                </div>
-                                <td>Emits 0 or n items.</td>
-                            </tr>
-                            <tr>
-                                <td>Single&lt;T&gt;</td>
-                                <td>Emits either 1 item or an error event.</td>
-                            </tr>
-                            <tr>
-                                <td>Maybe&lt;T&gt;</td>
-                                <td>Succeeds with an item, or no item, or errors.</td>
-                            </tr>
-                            <tr>
-                                <td>Completable</td>
-                                <td>Either completes with an success or with an error event. <br>It never emits items.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h4>ReactiveX Languages</h4>
+                    <ul style="width:40%;float:left;margin-left:15%;">
+                        <li>Java: <a href="https://github.com/ReactiveX/RxJava" target="_blank">RxJava</a></li>
+			<div class="fragment callout"
+                         data-callout="li:contains('Java: ')"
+                         data-callout-offset-left="-200"
+                         data-callout-offset-top="-20"
+                         data-callout-offset-size="220">
+                         <div class="callout-circle"></div>
+                    	</div>
+                        <li>JavaScript: <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">RxJS</a></li>
+                        <li>C#: <a href="https://github.com/Reactive-Extensions/Rx.NET" target="_blank">Rx.NET</a></li>
+                        <li>C#(Unity): <a href="https://github.com/neuecc/UniRx" target="_blank">UniRx</a></li>
+                        <li>Scala: <a href="https://github.com/ReactiveX/RxScala" target="_blank">RxScala</a></li>
+                        <li>Clojure: <a href="https://github.com/ReactiveX/RxClojure" target="_blank">RxClojure</a></li>
+                    </ul>
+                    <ul style="width:40%;float:left;">
+                        <li>C++: <a href="https://github.com/Reactive-Extensions/RxCpp" target="_blank">RxCpp</a></li>
+                        <li>Ruby: <a href="https://github.com/Reactive-Extensions/Rx.rb" target="_blank">Rx.rb</a></li>
+                        <li>Python: <a href="https://github.com/ReactiveX/RxPY" target="_blank">RxPY</a></li>
+                        <li>Groovy: <a href="https://github.com/ReactiveX/RxGroovy" target="_blank">RxGroovy</a></li>
+                        <li>JRuby: <a href="https://github.com/ReactiveX/RxJRuby" target="_blank">RxJRuby</a></li>
+                        <li>Kotlin: <a href="https://github.com/ReactiveX/RxKotlin" target="_blank">RxKotlin</a></li>
+                    </ul>
                 </section>
-                
-                <section>
-                    <img src="img/illustrationFlow.PNG">
-                </section>
-                
-                <section>
-                    <h3>Observable stream</h3>
-                    <pre><code data-trim class="java">
-public class Observable {
-    Subscription subscribe(Observer observer) { ... }
-}
 
-public interface Observer {
-    void onCompleted();
-    void onError(error);
-    void onNext(value);
-}
+                
+                
+                
 
-public interface Subscription {
-    void unsubscribe();
-    boolean isUnsubscribed();
-}
-                    </code></pre>
-                </section>
-		
                 <section>
                     <h3 class="rx-title">
                         <img src="img/Rx_Logo_S.png" alt="">
@@ -186,7 +176,7 @@ public interface Subscription {
                             <div class="callout-text">one-to-one <br>relation</div>
                             <div class="callout-arrow"></div>
                         </div>
-			<li class="fragment fade-up">A set of <strong>methods</strong> for modifying the data</li>
+			<li>A set of <strong>methods</strong> for modifying the data</li>
 			<div class="fragment callout position-bottom"
                             data-callout="strong:contains('methods')">
                             <div class="callout-arrow"></div>
@@ -195,7 +185,49 @@ public interface Subscription {
 		    </ul>
                 </section>
                 
-		<section>
+                <section>
+                    <img src="img/illustrationFlow.PNG">
+                </section>
+                
+                <section>
+                    <h3>Observable stream</h3>
+                    <pre><code data-trim class="java">
+public class Observable {
+    Subscription subscribe(Observer observer) { ... }
+}
+
+public interface Observer {
+    void onCompleted();
+    void onError(error);
+    void onNext(value);
+}
+
+public interface Subscription {
+    void unsubscribe();
+    boolean isUnsubscribed();
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h3>Operators</h3>
+                    <ul style="width:30%;float:left;margin-left:25%;">
+                        <li>map</li>
+                        <li>reduce</li>
+                        <li>filter</li>
+                        <li>scan</li>
+                        <li>flatMap</li>
+                    </ul>
+                    <ul style="width:40%;float:left;">
+                        <li>merge</li>
+                        <li>zip</li>
+                        <li>switch</li>
+                        <li>and many more</li>
+                        <li class="fragment">many many more...</li>
+                    </ul>
+                </section>
+                
+                <section>
                     <h2>Manipulate items emitted by observables</h2>
                     <div class="fragment">
                         <h4>taking the observable as <strong>parameter</strong></h4>
@@ -208,443 +240,75 @@ public interface Subscription {
                 <section>
                     <img src="img/explanationRxMarble.PNG">
                 </section>
-                
+
                 <section>
-                    <h4>ReactiveX Operators</h4>
-                    <h5>by category</h5>
-                    <ul style="width:40%;float:left;margin-left:15%;">
-                        <li><a href="http://reactivex.io/documentation/operators.html#creating" target="_blank">Creating</a></li>
-                        <li><a href="http://reactivex.io/documentation/operators.html#transforming" target="_blank">Transforming</a></li>
-                        <li><a href="http://reactivex.io/documentation/operators.html#filtering" target="_blank">Filtering</a></li>
-                        <li><a href="http://reactivex.io/documentation/operators.html#combining" target="_blank">Combining</a></li>
-			<div class="fragment callout"
-                            data-callout="a:contains('Combining')"
-                            data-callout-offset-left="-81"
-                            data-callout-offset-top="10"
-                            data-callout-offset-size="117">
-			<div class="callout-circle"></div>
-			</div>
-			<li><a href="http://reactivex.io/documentation/operators.html#error" target="_blank">Error Handling</a></li>
-                        <li><a href="http://reactivex.io/documentation/operators.html#utility" target="_blank">Utility</a></li>
-                    </ul>
-					
-                    <ul style="width:40%;float:left;">
-			<li><a href="http://reactivex.io/documentation/operators.html#conditional" target="_blank">Conditional and Boolean</a></li>
-                        <li><a href="http://reactivex.io/documentation/operators.html#mathematical" target="_blank">Mathematical and Aggregate</a></li>
-                        <li><a href="http://reactivex.io/documentation/operators.html#backpressure" target="_blank">Backpressure</a></li>
-                        <li><a href="http://reactivex.io/documentation/operators.html#connectable" target="_blank">Connectable</a></li>
-                        <li><a href="http://reactivex.io/documentation/operators.html#transforming" target="_blank">To Convert</a></li>
-                    </ul>
-                </section>
-                
-                <section>
-                    <section>
-			<h2>And / Then / When</h2>
-			<a href="#" class="navigate-down">
-			<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-			</a>
-                    </section>
-                    <section>
-                        <h5>Combines sets of items emitted by two or more Observables</h5>
-                        <img src="img/and_then_when.png" alt="">
-                    </section>
-                    <section>
-                    <div class="cols">
-                        <div class="col">
-                            <pre><code class="code javascript" contenteditable data-trim>
-var one = Rx.Observable.Interval(TimeSpan.FromSeconds(1)).Take(5);
-var two = Rx.Observable.Interval(TimeSpan.FromMilliseconds(250)).Take(10);
-var three = Rx.Observable.Interval(TimeSpan.FromMilliseconds(150)).Take(14);
-
-var pattern = one.and(two).and(three);
-var plan = pattern.thenDo((first, second, third) => new{One=first, Two=second, Three=third});
-var zippedSequence = Rx.Observable.when(plan);
-
-var subscription = zippedSequence.subscribe(
-    function (x) {
-        print('Next: ' + x.toString());
-    },
-    function (err) {
-        print('Error: ' + err);
-    },
-    function () {
-        print('Completed');
-    });
-                            </code></pre>
-                        </div>
-                        <div class="col output">
-                            <pre></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
-                </section>
-
+                    <h4>Visualization with <br> Marble Diagrams</h4>
+                    <img src="img/marble-diagram-legend.png" alt="">
+                    <p><a target="_blank" href="http://rxmarbles.com/">RxMarbles.com</a></p>
                 </section>
 
                 <section>
-                    <section>
-			<h2>CombineLatest</h2>
-			<a href="#" class="navigate-down">
-			<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-			</a>
-                    </section>
-                    <section>
-                        <h4>Combines the latest item emitted by each Observable via a specified function and emit items based on the results of this function</h4>
-                        <iframe class="marble-container" src="rxmarbles.html?type=combineLatest" frameborder="0"></iframe>
-                    </section>
-                    <section>
-                    <div class="cols">
-                        <div class="col">
-                            <pre><code class="code javascript" contenteditable data-trim>
-/* Have staggering intervals */
-var source1 = Rx.Observable.interval(100)
-    .map(function (i) { return 'First: ' + i; });
-
-var source2 = Rx.Observable.interval(150)
-    .map(function (i) { return 'Second: ' + i; });
-
-// Combine latest of source1 and source2 whenever either gives a value
-var source = source1.combineLatest(
-        source2,
-        function (s1, s2) { return s1 + ', ' + s2; }
-    ).take(4);
-
-var subscription = source.subscribe(
-    function (x) {
-        print('Next: ' + x.toString());
-    },
-    function (err) {
-        print('Error: ' + err);
-    },
-    function () {
-        print('Completed');
-    });
-                            </code></pre>
-                        </div>
-                        <div class="col output">
-                            <pre></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
+                    <iframe class="marble-container" src="rxmarbles.html?type=filter" frameborder="0"></iframe>
                 </section>
-                </section>
-                
+
                 <section>
-                    <section>
-			<h2>Join</h2>
-			<a href="#" class="navigate-down">
-			<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-			</a>
-                    </section>
-                    <section>
-                        <h5>Combines the items emitted by two Observables, and selects which items to combine based on duration-windows that you define on a per-item basis.</h5>
-                        <img src="img/join.png" alt="">
-                    </section>
-                    <section>
-                    <div class="cols">
-                        <div class="col">
-                            <pre><code class="code javascript" contenteditable data-trim>
-var xs = Rx.Observable.interval(100)
-    .map(function (x) { return 'first' + x; });
-
-var ys = Rx.Observable.interval(100)
-    .map(function (x) { return 'second' + x; });
-
-var source = xs
-    .join(
-        ys,
-        function () { return Rx.Observable.timer(0); },
-        function () { return Rx.Observable.timer(0); },
-        function (x, y) { return x + y; }
-    )
-    .take(5);
-
-var subscription = source.subscribe(
-    function (x) { print('Next: ' + x); },
-    function (err) { print('Error: ' + err); },
-    function () { print('Completed'); });
-                            </code></pre>
-                        </div>
-                        <div class="col output">
-                            <pre></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
+                    <iframe class="marble-container" src="rxmarbles.html?type=map" frameborder="0"></iframe>
                 </section>
-                </section>
-                
+
+                <!--section>
+                    <iframe class="marble-container" src="rxmarbles.html?type=debounce" frameborder="0"></iframe>
+                </section-->
+
                 <section>
-                    <section>
-			<h2>Merge</h2>
-			<a href="#" class="navigate-down">
-			<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-			</a>
-                    </section>
-                    <section>
-                        <h4>Combines multiple Observables into one by merging their emissions</h4>
-                        <iframe class="marble-container" src="rxmarbles.html?type=merge" frameborder="0"></iframe>
-                    </section>
-                    <section>
-                        <pre><code data-trim class="java" style="">
-Observable.just(1, 2, 3)
-    .mergeWith(Observable.just(4, 5, 6))
-    .subscribe(item -> System.out.println(item));
-    		    </code></pre>
-		    <pre><code data-trim class="java">
-1, 2, 3, 4, 5, 6
-		    </code></pre>
-                    </section>
-                    
-                    <section>
-                    <div class="cols">
-                        <div class="col">
-                            <pre><code class="code javascript" contenteditable data-trim>
-//Generate values 0,1,2 
-var s1 = Rx.Observable.interval(TimeSpan.FromSeconds(250))
-    .Take(3);
-//Generate values 100,101,102,103,104 
-var s2 = Rx.Observable.interval(TimeSpan.FromSeconds(150))
-    .Take(5)
-    .Select(i => i + 100);
+                    <iframe class="marble-container" src="rxmarbles.html?type=merge" frameborder="0"></iframe>
+                </section>
 
-var subscription = s1.merge(s2).subscribe(
-    function (x) {
-        print('Next: ' + x.toString());
-    },
-    function (err) {
-        print('Error: ' + err);
-    },
-    function () {
-        print('Completed');
-    });
-                            </code></pre>
-                        </div>
-                        <div class="col output">
-                            <pre></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
-                </section>
-                </section>
-                
                 <section>
-                    <section>
-			<h2>StartWith</h2>
-			<a href="#" class="navigate-down">
-			<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-			</a>
-                    </section>
-                    <section>
-                        <h4>Emits a specified sequence of items before beginning to emit the items from the source Observable</h4>
-                        <iframe class="marble-container" src="rxmarbles.html?type=startWith" frameborder="0"></iframe>
-                    </section>
-                    <section>
-                        <pre><code data-trim class="java" style="">
-Observable<String> names = Observable.just("Spock", "McCoy");
-names.startWith("Kirk").subscribe(item -> System.out.println(item));
-    		    </code></pre>
-		    <pre><code data-trim class="java">
-Kirk, Spock, McCoy
-		    </code></pre>
-                    </section>
-                    
-                    <section>
-                    <div class="cols">
-                        <div class="col">
-                            <pre><code class="code javascript" contenteditable data-trim>
-var source = Rx.Observable.range(0, 5);
-var result = source.startWith(-3, -2, -1);
+                    <iframe class="marble-container" src="rxmarbles.html?type=zip" frameborder="0"></iframe>
+                </section>
 
-var subscription = result.subscribe(
-    function (x) {
-        print('Next: ' + x.toString());
-    },
-    function (err) {
-        print('Error: ' + err);
-    },
-    function () {
-        print('Completed');
-    });
-                            </code></pre>
-                        </div>
-                        <div class="col output">
-                            <pre></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
-                </section>
-                </section>
-                
                 <section>
-                    <section>
-			<h2>Switch</h2>
-			<a href="#" class="navigate-down">
-			<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-			</a>
-                    </section>
-                    <section>
-                        <h5>Converts an Observable that emits Observables into a single Observable that emits the items emitted by the most-recently-emitted of those Observables</h5>
-                        <img src="img/switch.png" alt="">
-                    </section>
-                    <section>
-                    <div class="cols">
-                        <div class="col">
-                            <pre><code class="code javascript" contenteditable data-trim>
-var source = Rx.Observable.range(0, 3)
-    .select(function (x) { return Rx.Observable.range(x, 3); })
-    .switch();
-
-var subscription = source.subscribe(
-    function (x) { print('Next: ' + x); },
-    function (err) { print('Error: ' + err); },
-    function () { print('Completed'); });
-                            </code></pre>
-                        </div>
-                        <div class="col output">
-                            <pre></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
-                </section>
-
-                </section>
-                
-                <section>
-                    <section>
-			<h2>Zip</h2>
-			<a href="#" class="navigate-down">
-			<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-			</a>
-                    </section>
-                    <section>
-                        <h4>Combines the emissions of multiple Observables together via a specified function and emit single items for each combination based on the results of this function</h4>
-                        <iframe class="marble-container" src="rxmarbles.html?type=zip" frameborder="0"></iframe>
-                    </section>
-                    <section>
-                        <pre><code data-trim class="java" style="">
-Observable<String> firstNames = Observable.just("James", "Jean-Luc", "Benjamin");
-Observable<String> lastNames = Observable.just("Kirk", "Picard", "Sisko");
-firstNames.zipWith(lastNames, (first, last) -> first + " " + last)
-    .subscribe(item -> System.out.println(item));
-    		    </code></pre>
-		    <pre><code data-trim class="java">
-James Kirk, Jean-Luc Picard, Benjamin Sisko
-		    </code></pre>
-                    </section>
-                    <section>
-                    <div class="cols">
-                        <div class="col">
-                            <pre><code class="code javascript" contenteditable data-trim>
-/* Using arguments */
-var range = Rx.Observable.range(0, 5);
-
-var source = Rx.Observable.zip(
-    range,
-    range.skip(1),
-    range.skip(2),
-    function (s1, s2, s3) {
-        return s1 + ':' + s2 + ':' + s3;
-    }
-);
-
-var subscription = source.subscribe(
-    function (x) {
-        print('Next: ' + x);
-    },
-    function (err) {
-        print('Error: ' + err);
-    },
-    function () {
-        print('Completed');
-    });
-                            </code></pre>
-                        </div>
-                        <div class="col output">
-                            <pre></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
-                    </div>
-                </section>
+                    <iframe class="marble-container" src="rxmarbles.html?type=count" frameborder="0"></iframe>
                 </section>
 		
-		<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+		<section data-transition="slide" data-background="#5f777f" data-background-transition="zoom">
 		    <h2 style="color:#ffffff">Implementations Examples</h2>
-                    <h4 class="fragment grow" style="color:#ffffff">by third parties</h4>
+                    <h4 class="fragment grow" style="color:#ffffff">with RxJS</h4>
 		</section>
-		
-		<section>
-                    <h3>Rx helps us by:</h3>
-                    <p>
-                        <span style="display: inline-block;" class="fragment fade-right">- Handling the cache without creating caching classes</span>
-                        <br>
-                        <span style="display: inline-block;" class="fragment fade-up">- Optimizing the code to increase an application response</span>
-                        <br>
-                        <span style="display: inline-block;" class="fragment fade-down">- Making methods easier to combine</span>
-                        <br>
-                        <span style="display: inline-block;" class="fragment fade-left">- Combining the reception of requests and results processing</span>
-                        <br>
-                    </p>
-                </section>		
-                
-                <section>
-                    <h3>Reactive Programming in the Netflix API with RxJava</h3>
-                    <br>
-                    <ul>
-			<li>Embrace Concurrency</li>
-			<li>Java Futures are Expensive to Compose</li>
-			<li>Callbacks Have Their Own Problems</li>
-		    </ul>
-                </section>
-                
-                <section>
-                    <h5>Reactive programming with RxJava has enabled Netflix developers to leverage server-side concurrency without the typical thread-safety and synchronization concerns.
-                    <br>
-                    <h5>The API service layer implementation has control over concurrency primitives, which enables us to pursue system performance improvements without fear of breaking client code.</h5>
-                    <br>
-                    <h5>RxJava is effective on the server for us and it spreads deeper into our code the more we use it.</h5>
-                </section>
-                
-                <section>
-                    <h4>Multiple tasks can be executed <strong>parallel</strong><br>
-                        and the code is easy to maintain<br>
-                        when data from <em>multiple sources</em> need to be handled.</h4>
-                </section>
-                
-                <section style="text-align: left;">
-                    <h1>State of the art</h1>
-                    <ul>
-                        <li><a href="http://lup.lub.lu.se/luur/download?func=downloadFile&recordOId=8932146&fileOId=8932147">Reactive programming and its effect on performance <br>and the development process</a></li>
-                        <li><a href="http://gotocon.com/dl/goto-aar-2013/slides/BenChristensen_FunctionalReactiveProgrammingWithRxJava.pdf">Functional Reactive in the Netflix API with RxJava</a></li>
-                        <li><a href="http://jsfiddle.net/staltz/8jFJH/48/">Implementing a "Who to follow" suggestions box</a></li>
-                        <li><a href="https://medium.com/ninjadevs/writing-a-blockchain-with-rxjs-3768b7b838c1">Writing a blockchain with RxJS</a></li>
-                    </ul>
-                </section>
-                
-                <section data-background-iframe="http://gotocon.com/dl/goto-aar-2013/slides/BenChristensen_FunctionalReactiveProgrammingWithRxJava.pdf" data-background-interactive>
-                    <!-- Netflix Presentation -->
-                </section>
-                
-                
                 
                 <section>
                     <div class="cols">
                         <div class="col">
                             <pre><code class="code javascript" contenteditable data-trim>
+const source = Rx.Observable
+  .interval(1000)
+  .take(5)
 
+source.subscribe(
+  (x) => print("x = " + x)
+);
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+Rx.Observable
+  .fromEvent(document, 'keyup')
+  .map(event => event.keyCode)
+  .filter(key => key > 47 && key < 91)
+  .map(key => String.fromCharCode(key))
+  .subscribe(key =>
+    print(`You pressed: ${key}`))
                             </code></pre>
                         </div>
                         <div class="col output">
@@ -656,7 +320,7 @@ var subscription = source.subscribe(
                     </div>
                 </section>
                 
-                <section>
+                <!--section>
                     <div style="height:60px;text-align:left;position:relative;">
                                 <input type="text" id="autocomplete" style="font-size:16px;padding:5px;">
                                 <div id="autocomplete-suggestions"></div>
@@ -685,7 +349,68 @@ Rx.Observable
                     <div>
                         <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
                     </div>
+                </section-->
+
+                <section>
+                    <div class="cols">
+                        <div class="col">
+                            <pre><code class="code javascript" contenteditable data-trim>
+const click$ = Rx.Observable
+  .fromEvent(document, 'click')
+
+const clickCount$ = click$
+  .buffer(() => click$.debounce(500))
+  .map(events => events.length)
+
+clickCount$
+  .filter(count => count == 1)
+  .subscribe(() =>
+    print('Nice click'))
+
+clickCount$
+  .filter(count => count == 2)
+  .subscribe(() =>
+    print('Wow, such doubleclick!'))
+
+clickCount$
+  .filter(count => count > 2)
+  .subscribe(() =>
+    print('So many click, much WOW!!1!'))
+                            </code></pre>
+                        </div>
+                        <div class="col output">
+                            <pre></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" onclick="runCode(this)">&#9654;&nbsp; Run</button>
+                    </div>
                 </section>
+
+                <section>
+                    <h4>Take small &amp; simple events <br>
+                        and <strong>compose them</strong> to <br>
+                        create more <em>complex events</em>.</h4>
+                </section>
+		
+                
+                <section>
+                    <h4>Multiple tasks can be executed <strong>parallel</strong><br>
+                        and the code is easy to maintain<br>
+                        when data from <em>multiple sources</em> need to be handled.</h4>
+                </section>
+                
+                <section style="text-align: left;">
+                    <h1>State of the art</h1>
+                    <ul>
+                        <li><a href="http://lup.lub.lu.se/luur/download?func=downloadFile&recordOId=8932146&fileOId=8932147">Reactive programming and its effect on performance <br>and the development process</a></li>
+                        <li><a href="http://gotocon.com/dl/goto-aar-2013/slides/BenChristensen_FunctionalReactiveProgrammingWithRxJava.pdf">Functional Reactive in the Netflix API with RxJava</a></li>
+                        <li><a href="http://jsfiddle.net/staltz/8jFJH/48/">Implementing a "Who to follow" suggestions box</a></li>
+                        <li><a href="https://medium.com/ninjadevs/writing-a-blockchain-with-rxjs-3768b7b838c1">Writing a blockchain with RxJS</a></li>
+                    </ul>
+                </section>
+                
+                
 
                 <section style="text-align: left;">
                     <h1>RESOURCES</h1>
@@ -696,6 +421,7 @@ Rx.Observable
                             Using reactive programming with RxJava</a></li>
                         <li><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">The
                             introduction to Reactive Programming <br> you've been missing by andrestaltz</a></li>
+                        <li><a href="https://github.com/unicesi/eketal">REAL</a></li>
                     </ul>
                 </section>
 
